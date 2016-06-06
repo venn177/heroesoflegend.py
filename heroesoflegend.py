@@ -14,6 +14,17 @@ def main():
     charSocial, solMod, nobleTitle, tiMod = socialTable103(cuMod, tiMod, charCulture)
     if nobleTitle == '':
         nobleTitle = 'no title'
+    legitBirth = birthTable104(cuMod)
+    if legitBirth == False:
+        if cuMod >= 0:
+            cuMod = cuMod - randint(1,4)
+        illegitReason = illegitBirthTable105(cuMod)
+        print('Birth was illegitimate. Cause: ' + illegitReason)
+    charFamily = familyTable106(cuMod)
+    if charAdopted == True:
+        charFamily += ' (adopted)'
+
+
     print(charRace + ' ' + charCulture + ' (' + str(cuMod) + ')' + ' ' + charSocial + ' (' + str(solMod) + ') ' + nobleTitle + ' (' + str(tiMod) + ')')
 
 
