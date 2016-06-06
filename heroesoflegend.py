@@ -4,9 +4,15 @@ from rolltables import *
 
 # This is the random choice initializer functions
 
-def main ():
+def main():
     charRace = random_choice(raceTable101)
-    print(charRace)
+    charCulture = random_choice(cultureTable102)
+    cuMod = cultureTable102a(charCulture)
+    tiMod = 0
+    nobleTitle = ''
+    charSocial, solMod, nobleTitle, tiMod = socialTable103(cuMod, tiMod, charCulture)
+    print(charRace + ' ' + charCulture + ' (' + str(cuMod) + ')' + ' ' + charSocial + ' (' + str(solMod) + ') ' + nobleTitle + ' (' + str(tiMod) + ')')
+
 
 def random_choice_index(chances):
 	dice = randint(1, sum(chances))
