@@ -6,11 +6,14 @@ from rolltables import *
 
 def main():
     charRace = random_choice(raceTable101)
+    if charRace == 'other races':
+        charRace = random_choice(raceTable101a)
     charCulture = random_choice(cultureTable102)
     cuMod = cultureTable102a(charCulture)
     tiMod = 0
-    nobleTitle = ''
     charSocial, solMod, nobleTitle, tiMod = socialTable103(cuMod, tiMod, charCulture)
+    if nobleTitle == '':
+        nobleTitle = 'no title'
     print(charRace + ' ' + charCulture + ' (' + str(cuMod) + ')' + ' ' + charSocial + ' (' + str(solMod) + ') ' + nobleTitle + ' (' + str(tiMod) + ')')
 
 
