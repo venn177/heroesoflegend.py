@@ -15,65 +15,65 @@ Table = {
 '''
 
 raceTable101 = {
-    'human': 14,
-    'elf': 2,
-    'dwarf': 1,
-    'halfling': 1,
-    'half elf': 1,
+    'Human': 14,
+    'Elf': 2,
+    'Dwarf': 1,
+    'Halfling': 1,
+    'Half Elf': 1,
     'other races': 1
 }
 
 raceTable101a = {
-    'beastman': 3,
-    'reptileman': 2,
-    'orc': 1,
-    'half orc': 4
+    'Beastman': 3,
+    'Reptileman': 2,
+    'Orc': 1,
+    'Half-Orc': 4
 }
 
 cultureTable102 = {
-    'primitive': 1,
-    'nomad': 2,
-    'barbarian': 3,
-    'civilized': 3,
-    'civilized-decadent': 1
+    'Primitive': 1,
+    'Nomad': 2,
+    'Barbarian': 3,
+    'Civilized': 3,
+    'Civilized-decadent': 1
 }
 
 def cultureTable102a(culture):
-    if culture == 'primitive':
+    if culture == 'Primitive':
         return(-3)
-    elif culture == 'nomad':
+    elif culture == 'Nomad':
         return(0)
-    elif culture == 'barbarian':
+    elif culture == 'Barbarian':
         return(2)
-    elif culture == 'civilized':
+    elif culture == 'Civilized':
         return(4)
-    elif culture == 'civilized-decadent':
+    elif culture == 'Civilized-decadent':
         return(7)
 
 def socialTable103(cuMod, tiMod, charCulture):
     rand = randint(1,100) + cuMod + tiMod
     if rand <= 12:
-        return('destitute', -3, '', 0)
+        return('Destitute', -3, '', 0)
     elif rand <= 40:
-        return('poor', -1, '', 0)
+        return('Poor', -1, '', 0)
     elif rand <=84:
-        return('comfortable', 0, '', 0)
+        return('Comfortable', 0, '', 0)
     elif rand == 85:
         socialTable103(0, tiMod, charCulture)
     elif rand <= 96:
-        return('well-to-do', 2, '', 0)
+        return('Well-to-do', 2, '', 0)
     elif rand <= 98:
         rand = randint(1,100)
         if rand <= tiMod + 1:
-            return('extremely wealthy', 8, '', 0)
+            return('Extremely Wealthy', 8, '', 0)
         else:
-            return('wealthy', 4, '', 0)
+            return('Wealthy', 4, '', 0)
     elif rand >= 99:
-        if charCulture == 'primitive':
+        if charCulture == 'Primitive':
             nobleTitle = random_choice(nobleTable758prim)
-        elif charCulture == 'nomad':
+        elif charCulture == 'Nomad':
             nobleTitle = random_choice(nobleTable758nomad)
-        elif charCulture == 'barbarian':
+        elif charCulture == 'Barbarian':
             nobleTitle = random_choice(nobleTable758barb)
         else:
             nobleTitle = random_choice(nobleTable758civil)
@@ -86,21 +86,21 @@ def socialTable103(cuMod, tiMod, charCulture):
 def socialTable103a(cuMod, tiMod, charCulture, nobleTitle):
     rand = randint(1,100) + cuMod + tiMod
     if rand <= 12:
-        return('destitute', -3, nobleTitle, tiMod)
+        return('Destitute', -3, nobleTitle, tiMod)
     elif rand <= 40:
-        return('poor', -1, nobleTitle, tiMod)
+        return('Poor', -1, nobleTitle, tiMod)
     elif rand <=84:
-        return('comfortable', 0, nobleTitle, tiMod)
+        return('Comfortable', 0, nobleTitle, tiMod)
     elif rand == 85:
         return socialTable103a(0, tiMod, charCulture, nobleTitle)
     elif rand <= 96:
-        return('well-to-do', 2, nobleTitle, tiMod)
+        return('Well-to-do', 2, nobleTitle, tiMod)
     elif rand <= 98:
         rand = randint(1,100)
         if rand <= tiMod + 1:
-            return('extremely wealthy', 8, nobleTitle, tiMod)
+            return('Extremely Wealthy', 8, nobleTitle, tiMod)
         else:
-            return('wealthy', 4, nobleTitle, tiMod)
+            return('Wealthy', 4, nobleTitle, tiMod)
     elif rand >= 99:
         return socialTable103a(cuMod, tiMod, charCulture, nobleTitle)
 
@@ -163,11 +163,12 @@ def familyTable106(cuMod):
     elif rand <= 19:
         return "only a father"
     elif rand <= 20:
+        global charAdopted
+        charAdopted = False
         rand = randint(1,20)
         if rand <= 8:
             return guardiansTable754(cuMod)
         else:
-            global charAdopted
             charAdopted = True
             return familyTable106a(cuMod)
     elif rand <= 24:
@@ -247,37 +248,6 @@ relativesTable753 = {
     'unknown relation': 20
 }
 
-def guardiansTable754(cuMod):
-    rand = randint(1,20)
-    if rand <= 5:
-        return random_choice(relativesTable753)
-    if rand <= 8:
-        return 'raised in an orphanage'
-    if rand <= 10:
-        global charAdopted
-        charAdopted = True
-        familyTable106a(cuMod)
-    if rand <= 11:
-        return 'raised by priests or monks of ' + deitiesTable864(cuMod)
-    if rand <= 12:
-        return 'raised by ' + random_choice(nonhumansTable751)
-    if rand <= 13:
-        #
-    if rand <= 14:
-        #
-    if rand <= 15:
-        #
-    if rand <= 16:
-        #
-    if rand <= 17:
-        #
-    if rand <= 18:
-        #
-    if rand <= 19:
-        #
-    if rand <= 20:
-        #
-
 def enslavedTable539():
     rand = randint(1,20)
     if rand <= 1:
@@ -298,31 +268,66 @@ def enslavedTable539():
         elif rand == 7:
             return 'the character, owned by a slaverunner, was set free by the owner who is in love with them'
         elif rand == 8:
-            #re-roll on table shit, ugh.
+            return 're-roll on table shit, ugh.'
     elif rand <= 2:
-
-    elif rand <= :
-
-    elif rand <= :
-
-    elif rand <= :
-
-    elif rand <= :
-
-    elif rand <= :
-
-    elif rand <= :
-
-    elif rand <= :
-
-    elif rand <= :
-
-    elif rand <= :
-
-    elif rand <= :
-
-    elif rand <= :
-
+        #owner decides to free character
+        rand = randint(1,10)
+        if rand == 1:
+            rand = randint(1,8)
+            if rand <= 4:
+                return 'character is freed from slavery by owner, who is a good friend'
+            elif rand <= 7:
+                return "character is freed from slavery by owner, who becomes the character's patron" # table 543 here
+            elif rand <= 8:
+                return "character is freed from slavery by owner, who becomes the character's companion" # table 761 here
+        elif rand <= 2:
+            return 'character is freed from slavery by owner due to religious conversion, character is paid ' + str(randint(2,20)) + ' gold coins in reparations'
+        elif rand <= 4:
+            return 'character is reunired with relatives after being freed from slavery'
+        elif rand <= 5:
+            return 'owner dies and their will specifies that slaves are to be freed'
+        elif rand <= 7:
+            return ' the slave is unable to be used for work and enlists in the military' #go to table 535
+        elif rand <= 8:
+            return 'the character escapes slavery with the help of another, who becomes their companion' #go to table 863
+        elif rand <= 9:
+            return "while in slavery, the character saves their owner's life. the owner gives the character their freedom and " + giftsTable863
+        elif rand <= 10:
+            return '3x re-roll, will set up later'
+    elif rand <= 3:
+        return 'the ruler of the land declares slavery illegal and the player is given ' + str(randint(1,100)) + ' gold as reparations'
+    elif rand <= 4:
+        return 'the character is freed of slavery by saving money and buying their own freedom'
+    elif rand <= 5:
+        return 'owner dies'
+        #there will be a bunch more rolls here
+    elif rand <= 7:
+        return 'character improves their occupational skill rating by one while in slavery'
+    elif rand <= 8:
+        return 'character improves their occupational skill rating by ' + str(randint(2,4)) + ' while in slavery'
+    elif rand <= 9:
+        return 'while in slavery, the character is often beaten by their owner'
+    elif rand <= 10:
+        return 'character learns an additional skill at rank 1 while enslaved'
+    elif rand <= 11:
+        return 'as a slave, the character is a sexual plaything of the owner and has no other duties.'
+    elif rand <= 12:
+        return 'character participates in a slave revolt'
+        #more rolls will go here
+    elif rand <= 13:
+        return 'while enslaved, a character is promoted to a position of authority'
+    elif rand <= 14:
+        return "while enslaved, the character is the owner's favorite and becomes the senior slave. one of the other slaves becomes the character's rival" #roll table 762 here
+    elif rand <= 15:
+        return 'character is used as breeding stock. if male, produces ' + str(randint(1,10)) + ' kids per year. if female, one per year'
+    elif rand <= 16:
+        return 'character is resold ' + str(randint(1,3)) + ' times during their enslavement'
+    elif rand <= 17:
+        return 'character is branded on their ' + bodyLocationTable867
+    elif rand <= 18:
+        return 'the character attempts to escape from slavery, fails, and is branded on their ' + bodyLocationTable867 + '. they are also beaten more often'
+    elif rand <= 20:
+        return 'an exotic event occurs that causes the character to be freed' #roll on table 544 here
 
 nonhumansTable751 = {
     'elf': 4,
@@ -334,6 +339,37 @@ nonhumansTable751 = {
     'orc': 1,
     'half orc': 2
 }
+
+def guardiansTable754(cuMod):
+    rand = randint(1,20)
+    if rand <= 5:
+        return random_choice(relativesTable753)
+    elif rand <= 8:
+        return 'raised in an orphanage'
+    elif rand <= 10:
+        global charAdopted
+        charAdopted = True
+        familyTable106a(cuMod)
+    elif rand <= 11:
+        return 'raised by priests or monks of ' + deitiesTable864(cuMod)
+    elif rand <= 12:
+        return 'raised by ' + random_choice(nonhumansTable751)
+    elif rand <= 13:
+        return 'sold into slavery ' + enslavedTable539()
+    elif rand <= 14:
+        return 'raised on the street by beggars and prostitutes'
+    elif rand <= 15:
+        return "raised by a thieves' guild" #table534 here
+    elif rand <= 16:
+        return 'raised by different relatives, passed between them until coming of age'
+    elif rand <= 17:
+        return 'raised by an adventurer: ' #table757
+    elif rand <= 18:
+        return 'character mysteriously disappeared for ' + str(randint(1,10)) + ' years'
+    elif rand <= 19:
+        return 'raised by beasts in the wild'
+    elif rand <= 20:
+        return 'raised by ' #table 756
 
 criminalTable755 = {
     'murderer': 1,
@@ -438,14 +474,104 @@ def nobleTable758tiMod(nobleTitle):
     else:
         raise ValueError("\nnobleTable758tiMod isn't getting a nobleTitle pushed to it.")
 
+def unusualPetsTable759():
+    rand = randint(1,20)
+    if rand <= 2:
+        petType = 'dog'
+    elif rand <= 4:
+        petType = 'cat'
+    elif rand <= 5:
+        petType = 'rabbit'
+    elif rand <= 6:
+        petType = 'lizard'
+    elif rand <= 7:
+        petType = 'monkey'
+    elif rand <= 8:
+        petType = 'raccoon'
+    elif rand <= 9:
+        petType = 'rat'
+    elif rand <= 10:
+        petType = 'snake'
+    elif rand <= 11:
+        petType = 'hawk'
+    elif rand <= 12:
+        petType = 'mouse'
+    elif rand <= 13:
+        petType = 'ferret'
+    elif rand <= 14:
+        petType = 'songbird'
+    elif rand <= 15:
+        rand = randint(1,3)
+        if rand == 3:
+            petType = 'fish (that can survive out of water)'
+        else:
+            petType = 'fish'
+    elif rand <= 16:
+        petType = 'puppy'
+    elif rand <= 17:
+        petType = 'mini-dragon'
+    elif rand <= 18:
+        petType = 'big cat'
+    elif rand <= 19:
+        petType = 'baby bear that stays a baby'
+    elif rand <= 20:
+        petType = 'something alien'
+
+def specialPetAbilitiesTable760():
+    rand = randint(1,20)
+    if rand <= 1:
+        return 'has wings'
+    elif rand <= 2:
+        return 'very intelligent'
+    elif rand <= 3:
+        return 'telepathic'
+    elif rand <= 4:
+        return 'unusual color: ' + colorsTable865
+    elif rand <= 5:
+        rand = randint(1,10)
+        return 'pet is made of odd substance'
+    elif rand <= 6:
+        return 'pet has physical affliction ' #table874 here
+    elif rand <= 7:
+        return 'pet can use magic spells'
+    elif rand <= 8:
+        return 'pet is invisible to all but owner'
+    elif rand <= 9:
+        return 'pet regenerates damage done to it'
+    elif rand <= 10:
+        return 'when killed, pet will possess nearest animal'
+    elif rand <= 11:
+        rand = randint(1,2)
+        if rand == 1:
+            return 'pet is unusually large'
+        else:
+            return 'pet is unusually small'
+    elif rand <= 12:
+        return 'once per day, pet may assume attractive human form for ' + str(randint(1,6)) + ' hours'
+    elif rand <= 13:
+        return 'draws magical power from its master'
+    elif rand <= 14:
+        return 'supplies magical power to master'
+    elif rand <= 15:
+        return "pet's life is added to character's own as long as the pet lives"
+    elif rand <= 16:
+        return 'breathes fire'
+    elif rand <= 17:
+        return 'can increase its size and strength ' + str(randint(1,10)) + ' times their normal amount once per day for ' + str(randint(1,6)) + ' hours'
+    elif rand <= 18:
+        return 'can provide master with ' + str(randint(1,6)) + ' gold per day'
+    elif rand <= 19:
+        return 'can turn into mist at will'
+    elif rand <= 20:
+        return 'reroll shit'
 def giftsTable863():
     rand = randint(1,20)
     if rand <= 1:
         return random_choice(giftsTable863a)
     elif rand <= 2:
-        #guardianship of a young ward. Use table 761
+        return 'guardianship of a young ward. Use table 761'
     elif rand <= 3:
-        #unusual pet. Use table 760
+        return 'unusual pet. Use table 760'
     elif rand <= 4:
         return random_choice(giftsTable863b)
     elif rand <= 5:
@@ -479,7 +605,7 @@ def giftsTable863():
     elif rand <= 19:
         return 'a chainmail hauberk'
     elif rand <= 20:
-        #roll again shenanigans
+        return 'roll again shenanigans'
 
 giftsTable863a = {
     'an ornate dagger': 1,

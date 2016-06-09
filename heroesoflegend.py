@@ -11,9 +11,11 @@ def main():
     charCulture = random_choice(cultureTable102)
     cuMod = cultureTable102a(charCulture)
     tiMod = 0
+    global charAdopted
+    charAdopted = False
     charSocial, solMod, nobleTitle, tiMod = socialTable103(cuMod, tiMod, charCulture)
     if nobleTitle == '':
-        nobleTitle = 'no title'
+        nobleTitle = 'None'
     legitBirth = birthTable104(cuMod)
     if legitBirth == False:
         if cuMod >= 0:
@@ -24,8 +26,7 @@ def main():
     if charAdopted == True:
         charFamily += ' (adopted)'
 
-
-    print(charRace + ' ' + charCulture + ' (' + str(cuMod) + ')' + ' ' + charSocial + ' (' + str(solMod) + ') ' + nobleTitle + ' (' + str(tiMod) + ')')
+    print('Race: ' + charRace + ', Culture: ' + charCulture + ' (' + str(cuMod) + '), Social Standing: ' + charSocial + ' (' + str(solMod) + '), Title: ' + nobleTitle + ' (' + str(tiMod) + ')' + "\nFamily: " + str(charFamily))
 
 
 def random_choice_index(chances):
