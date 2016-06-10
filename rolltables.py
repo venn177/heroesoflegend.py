@@ -240,7 +240,7 @@ def siblingsTable107():
     #elif rand <= 20:
     return siblingsTable107a(rand)
 
-def siblingsTable107a(number):
+def siblingsTable107a(number): # I rolled table 108 into this one because I got kinda caught up in the speed I was going. Eh, fuck it for now.
     siblingMale = 0
     siblingFemale = 0
     for i in range(number):
@@ -279,9 +279,177 @@ def siblingsTable107a(number):
             birthOrder =  'last born'
     return siblingMale, siblingFemale, birthOrder
 
-def birthOrderTable108(siblingNumber):
-    rand = randint(1,20)
+#note to me: I rolled 108 into 107a, that's why it's not here. I know I'll forget this.
 
+def birthTimeTable109():
+    rand = randint(1,4)
+    if rand == 1:
+        birthSeason = 'spring'
+    elif rand == 2:
+        birthSeason = 'summer'
+    elif rand == 3:
+        birthSeason = 'autumn'
+    elif rand == 4:
+        birthSeason = 'winter'
+
+    rand = randint(1,8)
+    if rand == 1:
+        birthTimeOfDay = 'midnight'
+    elif rand == 2:
+        birthTimeOfDay = 'late night'
+    elif rand == 3:
+        birthTimeOfDay = 'early morning'
+    elif rand == 4:
+        birthTimeOfDay = 'sunrise'
+    elif rand == 5:
+        birthTimeOfDay = 'mid-day'
+    elif rand == 6:
+        birthTimeOfDay = 'afternoon'
+    elif rand == 7:
+        birthTimeOfDay = 'sunset'
+    elif rand == 8:
+        birthTimeOfDay = 'early evening'
+
+    return birthSeason, birthTimeOfDay
+
+def placeOfBirthTable110():
+    rand = randint(1,20)
+    if rand <= 6:
+        return 'in the family home', -5
+    elif rand <= 9:
+        return "in a hospital or healer's hall", -7
+    elif rand <= 10:
+        return 'in a carriage while traveling', 1
+    elif rand <= 11:
+        return 'in a common barn', 1
+    elif rand <= 13:
+        return 'in a foreign land', 2
+    elif rand <= 14:
+        return 'in a cave', 5
+    elif rand <= 15:
+        return 'in the middle of a field', 1
+    elif rand <= 16:
+        return 'in a forest', 2
+    elif rand <= 24:
+        return exoticBirthLocationTable111()
+
+def exoticBirthLocationTable111():
+    rand = randint(1,19) #yep, it's another one of these, I took out roll 14 due to GM-only, will consider adding back in later
+    if rand <= 2:
+        return  'double roll thing, will keep noted here for now', 5
+    elif rand == 3:
+        return 'in a temple of ' + deitiesTable864(), 5
+    elif rand == 4:
+        rand = randint(1,6)
+        if rand == 6:
+            return 'in the middle of a battlefield', 8
+        else:
+            return 'at a battlefield camp', 8
+    elif rand == 5:
+        return 'in an alley', 5
+    elif rand == 6:
+        return 'in a brothel', 2
+    elif rand == 7:
+        return 'in home of a local ruler', 2
+    elif rand == 8:
+        return 'home of the ruler of the country', 5
+    elif rand == 9:
+        return 'palace of an evil person or creature', 15
+    elif rand == 10:
+        return 'in a tavern', 2
+    elif rand == 11:
+        return 'in the sewers', 10
+    elif rand == 12:
+        return 'in a thieves den', 5
+    elif rand == 13:
+        return 'in the home of friendly nonhumans', 2
+    elif rand == 14: #I know I'll be looking at this later and confused, but 14 is the one I pruned because it's set as GM ONLY
+        return 'in the temple of an evil diety', 20
+    elif rand == 15:
+        return 'on another plane of reality', 15
+    elif rand == 16:
+        return 'in another time period', 10
+    elif rand == 17:
+        return 'on a ship at sea', 2
+    elif rand == 18:
+        return 'in a prison cell', 9
+    elif rand == 19:
+        return "in a wizard's laboratory", 20
+
+def unusualBirthTable112(biMod): #this has been cleaned up, removing the GM selecting portions
+    rand = randint(1,100) + biMod
+    if rand <= 60:
+
+    elif rand <= 76:
+
+    elif rand <= 92:
+
+    elif rand <= 97:
+
+    else:
+
+def unusualBirthCircumstancesTable113():
+    rand = randint(1,100)
+    if rand <= 5:
+        return "a person of note near the character's home died when they were born"
+    elif rand <= 10:
+        return 'wolves and dogs set up a howling'
+    elif rand <= 20:
+        return 'mother died in childbirth'
+    elif rand <= 23:
+        return 'all glassware in the house shattered'
+    elif rand <= 25:
+        return 'all milk in the area soured'
+    elif rand <= 27:
+        return 'father believes the character is not his child'
+    elif rand <= 31:
+        rand = randint(1,5)
+        return 'character has identical twin' + ((" that was separated at birth", "")[rand == 5])
+    elif rand <= 34:
+        return 'water froze or boiled by itself'
+    elif rand <= 37:
+        return 'unnatural weather occurred'
+    elif rand <= 38:
+        return 'unnaturally potent storms raged'
+    elif rand <= 41:
+        return ''
+    elif rand <= 44:
+
+    elif rand <= 47:
+
+    elif rand <= 50:
+
+    elif rand <= 53:
+
+    elif rand <= 55:
+
+    elif rand <= 56:
+
+    elif rand <= 57:
+
+    elif rand <= 62:
+
+    elif rand <= 64:
+
+    elif rand <= 69:
+
+    elif rand <= 75:
+
+    elif rand <= 81:
+
+    elif rand <= 85:
+
+    elif rand <= 86:
+
+    elif rand <= 88:
+
+    elif rand <= 93:
+
+    elif rand <= 94:
+
+    elif rand <= 99:
+
+    else:
 
 def enslavedTable539():
     rand = randint(1,20)
@@ -364,6 +532,87 @@ def enslavedTable539():
     elif rand <= 20:
         return 'an exotic event occurs that causes the character to be freed' #roll on table 544 here
 
+def DarksideTraitsTable648():
+    rand=randint(2,40)
+    if rand == 2:
+       return "pessimist"
+    elif rand == 3:
+        return "egoist"
+    elif rand == 4:
+        return "obstructive"
+    elif rand == 5:
+        return "cruel"
+    elif rand == 6:
+        return "careless"
+    elif rand == 7:
+        return "thoughtless"
+    elif rand == 8:
+        return "flippant"
+    elif rand == 9:
+        return "drunkard"
+    elif rand == 10:
+        return "suspicious"
+    elif rand == 11:
+        return "violent"
+    elif rand == 12:
+        return "argumentative"
+    elif rand == 13:
+        return "irreverent"
+    elif rand == 14:
+        return "cheat"
+    elif rand == 15:
+        return "hateful"
+    elif rand == 16:
+        return "selfish"
+    elif rand == 17:
+        return "slovenly"
+    elif rand == 18:
+        return "filthy"
+    elif rand == 19:
+        return "tardy"
+    elif rand == 20:
+        return "self-doubting"
+    elif rand == 21:
+        return "cowardly"
+    elif rand == 22:
+        return "disrespectful"
+    elif rand == 23:
+        return "angry"
+    elif rand == 24:
+        return "impatient"
+    elif rand == 25:
+        return "foolish"
+    elif rand == 26:
+        return "greedy"
+    elif rand == 27:
+        return "dull"
+    elif rand == 28:
+        return "vengeful"
+    elif rand == 29:
+        return "immoral"
+    elif rand == 30:
+        return "untrustworthy"
+    elif rand == 31:
+        return "rude"
+    elif rand == 32:
+        return "harsh"
+    elif rand == 33:
+        return "unfriendly"
+    elif rand == 34:
+        return "egotistic"
+    elif rand == 35:
+        return "lazy"
+    elif rand == 36:
+        return "liar"
+    elif rand == 37:
+        return "morose"
+    elif rand == 38:
+        return "unenthuastic"
+    elif rand == 39:
+        return "spendthrift"
+    elif rand == 40:
+        return "tactless"
+
 nonhumansTable751 = {
     'elf': 4,
     'dwarf': 3,
@@ -377,25 +626,25 @@ nonhumansTable751 = {
 
 relativesTable753 = {
     'first cousin': 1,
-    'second cousin': 2,
-    'distant cousin': 3,
-    'son': 4,
-    'daughter': 5,
-    'sister': 6,
-    'brother': 7,
-    'spouse': 8,
-    'aunt': 9,
-    'uncle': 10,
-    'great aunt': 11,
-    'great uncle': 12,
-    'mother': 13,
-    'father': 14,
-    'grandmother': 15,
-    'grandfather': 16,
-    'great grandmother': 17,
-    'great grandfather': 18,
-    'descendent': 19,
-    'unknown relation': 20
+    'second cousin': 1,
+    'distant cousin': 1,
+    'son': 1,
+    'daughter': 1,
+    'sister': 1,
+    'brother': 1,
+    'spouse': 1,
+    'aunt': 1,
+    'uncle': 1,
+    'great aunt': 1,
+    'great uncle': 1,
+    'mother': 1,
+    'father': 1,
+    'grandmother': 1,
+    'grandfather': 1,
+    'great grandmother': 1,
+    'great grandfather': 1,
+    'descendent': 1,
+    'unknown relation': 1
 }
 
 def guardiansTable754(cuMod):
@@ -794,7 +1043,7 @@ giftsTable863e = {
     "the character's true family history": 1
 }
 
-def deitiesTable864(cuMod):
+def deitiesTable864(cuMod=0):
     rand = randint(1,20) + cuMod
     if rand <= 1:
         return 'ancestor worship'

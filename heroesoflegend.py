@@ -32,6 +32,10 @@ def main():
         print('Siblings: None')
     else:
         print('Siblings: ' + str(siblingMale) + ' male' + (('s', '')[siblingMale == 1]) + ' and ' + str(siblingFemale) + ' female' + (('s', '')[siblingFemale == 1]) + ', of which the character is the ' + birthOrder)
+    birthTimeOfDay, birthSeason = birthTimeTable109()
+    placeofBirth, biMod = placeOfBirthTable110()
+    
+
 
 def random_choice_index(chances):
 	dice = randint(1, sum(chances))
