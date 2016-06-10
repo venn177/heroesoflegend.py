@@ -12,6 +12,7 @@ def main():
     cuMod = cultureTable102a(charCulture)
     tiMod = 0
     global charAdopted
+    global charsocial
     charAdopted = False
     charSocial, solMod, nobleTitle, tiMod = socialTable103(cuMod, tiMod, charCulture)
     if nobleTitle == '':
@@ -25,9 +26,7 @@ def main():
     charFamily = familyTable106(cuMod)
     if charAdopted == True:
         charFamily += ' (adopted)'
-
-    print('Race: ' + charRace + ', Culture: ' + charCulture + ' (' + str(cuMod) + '), Social Standing: ' + charSocial + ' (' + str(solMod) + '), Title: ' + nobleTitle + ' (' + str(tiMod) + ')' + "\nFamily: " + str(charFamily))
-
+    print('Race: ' + charRace + ', Culture: ' + charCulture + ', Social Standing: ' + charSocial + ', Title: ' + nobleTitle + "\nFamily: " + str(charFamily))
 
 def random_choice_index(chances):
 	dice = randint(1, sum(chances))

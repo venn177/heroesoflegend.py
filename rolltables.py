@@ -182,7 +182,7 @@ def familyTable106(cuMod):
     else:
         raise ValueError("familyTable106 is reporting a randint error for some weird fucking reason. This shouldn't be possible.")
 
-def familyTable106(cuMod):
+def familyTable106a(cuMod):
     rand = randint(1,20) + cuMod
     if rand <= 8:
         return 'mother and father only'
