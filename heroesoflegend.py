@@ -11,8 +11,8 @@ def main():
     charCulture = random_choice(cultureTable102)
     cuMod = cultureTable102a(charCulture)
     tiMod = 0
+    global charSocial
     global charAdopted
-    global charsocial
     charAdopted = False
     charSocial, solMod, nobleTitle, tiMod = socialTable103(cuMod, tiMod, charCulture)
     if nobleTitle == '':
@@ -22,19 +22,25 @@ def main():
         if cuMod >= 0:
             cuMod = cuMod - randint(1,4)
         illegitReason = illegitBirthTable105(cuMod)
-        print('Birth was illegitimate. Cause: ' + illegitReason)
-    charFamily = familyTable106(cuMod)
+        illegitBirth = 'Birth was illegitimate. Cause: ' + illegitReason
+    charFamily, charAdopted = familyTable106(cuMod)
     if charAdopted == True:
-        charFamily += ' (adopted)'
-    print('Race: ' + charRace + ', Culture: ' + charCulture + ', Social Standing: ' + charSocial + ', Title: ' + nobleTitle + "\nFamily: " + str(charFamily))
+        charFamily = '(adopted) ' + str(charFamily)
+    print('Race: ' + charRace + ' | Culture: ' + charCulture + ' | Social Standing: ' + charSocial + ' | Title: ' + nobleTitle + "\nFamily: " + str(charFamily))
     siblingMale, siblingFemale, birthOrder = siblingsTable107()
     if siblingMale == 'none':
         print('Siblings: None')
     else:
         print('Siblings: ' + str(siblingMale) + ' male' + (('s', '')[siblingMale == 1]) + ' and ' + str(siblingFemale) + ' female' + (('s', '')[siblingFemale == 1]) + ', of which the character is the ' + birthOrder)
-    birthTimeOfDay, birthSeason = birthTimeTable109()
-    placeofBirth, biMod = placeOfBirthTable110()
-    
+    birthSeason, birthTimeOfDay = birthTimeTable109()
+    placeOfBirth, biMod = placeOfBirthTable110()
+    print('Born during ' + birthSeason + ' at ' + birthTimeOfDay + ' ' + placeOfBirth)
+    birthOccurance, unusualBirth = unusualBirthTable112(biMod)
+    if unusualBirth == True:
+        birthOccurance = ", ".join(birthOccurance)
+        print('Birth circumstances: ' + birthOccurance)
+    if legitBirth == False: #this needs to be after birth occurances
+        print(illegitBirth)
 
 
 def random_choice_index(chances):

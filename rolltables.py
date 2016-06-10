@@ -123,107 +123,104 @@ def illegitBirthTable105(cuMod):
 def familyTable106(cuMod):
     rand = randint(1,20) + cuMod
     if rand <= 8:
-        return 'mother and father only'
+        familyInfo = 'Mother and father only'
     elif rand <= 12:
-        return 'extended family. mother and father, along with ' + str(randint(1,4)) + ' grandparents and ' + str(randint(1,4)) + ' aunts/uncles and cousins'
+        familyInfo = 'Extended family. Mother and father, along with ' + str(randint(1,4)) + ' grandparents and ' + str(randint(1,4)) + ' aunts/uncles and cousins'
     elif rand <= 13:
         rand = randint(1,2)
         if rand > 1:
-            return "grandparents on father's side"
+            familyInfo = "Grandparents on father's side"
         else:
-            return "grandparents on mother's side"
+            familyInfo = "Grandparents on mother's side"
     elif rand <= 14:
         rand = randint(1,2)
         if rand > 1:
-            return "single grandparent on mother's side"
+            familyInfo = "Single grandparent on mother's side"
         else:
-            return "single grandparent on father's side"
+            familyInfo = "Single grandparent on father's side"
     elif rand <= 15:
         rand = randint(1,2)
         if rand > 1:
-            return "single aunt or uncle on father's side"
+            familyInfo = "Single aunt or uncle on father's side"
         else:
-            return "single aunt or uncle on mother's side"
+            familyInfo = "Single aunt or uncle on mother's side"
     elif rand <= 16:
         rand = randint(1,2)
         if rand > 1:
             rand = randint(1,2)
             if rand > 1:
-                return "aunt on father's side"
+                familyInfo = "Aunt on father's side"
             else:
-                return "aunt on mother's side"
+                familyInfo = "Aunt on mother's side"
         else:
             rand = randint(1,2)
             if rand > 1:
-                return "uncle on father's side"
+                familyInfo = "Uncle on father's side"
             else:
-                return "uncle on mother's side"
+                familyInfo = "Uncle on mother's side"
     elif rand <= 18:
-        return "only a mother"
+        familyInfo = "Only a mother"
     elif rand <= 19:
-        return "only a father"
+        familyInfo = "Only a father"
     elif rand <= 20:
-        global charAdopted
-        charAdopted = False
         rand = randint(1,20)
         if rand <= 8:
-            return guardiansTable754(cuMod)
+            return guardiansTable754(cuMod), True
         else:
-            charAdopted = True
-            return familyTable106a(cuMod)
+            return familyTable106a(cuMod), True
     elif rand <= 24:
         global charSocial
         charSocial = 'destitute'
-        return 'none, left to fend for yourself'
+        familyInfo = 'none, left to fend for yourself'
     elif rand <= 27:
         global charSocial
         charSocial = 'poor'
-        return 'none, raised in an orphanage'
+        familyInfo = 'none, raised in an orphanage'
     else:
         raise ValueError("familyTable106 is reporting a randint error for some weird fucking reason. This shouldn't be possible.")
-
+    return familyInfo, False
 def familyTable106a(cuMod):
     rand = randint(1,20) + cuMod
     if rand <= 8:
-        return 'mother and father only'
+        return 'Mother and father only'
     elif rand <= 12:
-        return 'extended family. mother and father, along with ' + str(randint(1,4)) + ' grandparents and ' + str(randint(1,4)) + ' aunts/uncles and cousins'
+        return 'Extended family. Mother and father, along with ' + str(randint(1,4)) + ' grandparents and ' + str(randint(1,4)) + ' aunts/uncles and cousins'
     elif rand <= 13:
         rand = randint(1,2)
         if rand > 1:
-            return "grandparents on father's side"
+            return "Grandparents on father's side"
         else:
-            return "grandparents on mother's side"
+            return "Grandparents on mother's side"
     elif rand <= 14:
         rand = randint(1,2)
         if rand > 1:
-            return "single grandparent on mother's side"
+            return "Single grandparent on mother's side"
         else:
-            return "single grandparent on father's side"
+            return "Single grandparent on father's side"
     elif rand <= 15:
         rand = randint(1,2)
         if rand > 1:
-            return "single aunt or uncle on father's side"
+            return "Single aunt or uncle on father's side"
         else:
-            return "single aunt or uncle on mother's side"
+            return "Single aunt or uncle on mother's side"
     elif rand <= 16:
         rand = randint(1,2)
         if rand > 1:
             rand = randint(1,2)
             if rand > 1:
-                return "aunt on father's side"
+                return "Aunt on father's side"
             else:
-                return "aunt on mother's side"
+                return "Aunt on mother's side"
         else:
             rand = randint(1,2)
             if rand > 1:
-                return "uncle on father's side"
+                return "Uncle on father's side"
             else:
-                return "uncle on mother's side"
+                return "Uncle on mother's side"
     elif rand <= 18:
-        return "only a mother"
+        return "Only a mother"
     elif rand <= 19:
-        return "only a father"
+        return "Only a father"
 
 def siblingsTable107():
     rand = randint(1,19) #support for 20, just not implementing yet
@@ -379,14 +376,26 @@ def exoticBirthLocationTable111():
 def unusualBirthTable112(biMod): #this has been cleaned up, removing the GM selecting portions
     rand = randint(1,100) + biMod
     if rand <= 60:
-
+        return 'Nothing interesting', False
     elif rand <= 76:
-
+        birthOccurance = [None]*1
+        birthOccurance[0] = unusualBirthCircumstancesTable113()
     elif rand <= 92:
-
+        birthOccurance = [None]*2
+        birthOccurance[0] = unusualBirthCircumstancesTable113()
+        birthOccurance[1] = unusualBirthCircumstancesTable113()
     elif rand <= 97:
-
+        birthOccurance = [None]*3
+        birthOccurance[0] = unusualBirthCircumstancesTable113()
+        birthOccurance[1] = unusualBirthCircumstancesTable113()
+        birthOccurance[2] = unusualBirthCircumstancesTable113()
     else:
+        birthOccurance = [None]*4
+        birthOccurance[0] = unusualBirthCircumstancesTable113()
+        birthOccurance[1] = unusualBirthCircumstancesTable113()
+        birthOccurance[2] = unusualBirthCircumstancesTable113()
+        birthOccurance[3] = unusualBirthCircumstancesTable113()
+    return birthOccurance, True
 
 def unusualBirthCircumstancesTable113():
     rand = randint(1,100)
@@ -412,44 +421,153 @@ def unusualBirthCircumstancesTable113():
     elif rand <= 38:
         return 'unnaturally potent storms raged'
     elif rand <= 41:
-        return ''
+        return 'character born at exactly noon'
     elif rand <= 44:
-
-    elif rand <= 47:
-
+        return 'character born at exactly midnight'
+    elif rand <= 48:
+        return 'a seer declares that the character will be afflicted by an ancient family curse, ' #table 868 be here
     elif rand <= 50:
-
+        randint(1,10)
+        return 'a goose laid a golden egg' + ((", which the character still has with them", "")[rand >6])
     elif rand <= 53:
-
+        return 'the sky darkened like an eclipse'
     elif rand <= 55:
-
+        return 'the house became infested with poisonous snakes the next day'
     elif rand <= 56:
-
+        return 'all gold in the house turned to lead'
     elif rand <= 57:
-
+        return 'all metal in the house was turned into precious metals'
     elif rand <= 62:
-
+        return 'as an infant, character was left to die on hillside by natural parents'
     elif rand <= 64:
-
+        return 'character is born immediately after a tragedy, ' #table 528-a-gogo
     elif rand <= 69:
-
+        return 'character is born with a birthmark' # here be table 866
     elif rand <= 75:
-
+        return 'character is born with a curse' #868 here
     elif rand <= 81:
-
+        return 'born with a blessing' #869
     elif rand <= 85:
-
+        rand = randint(1,2)
+        return 'character has a fraternal twin, ' + (("male", "female")[rand == 1])
     elif rand <= 86:
-
+        return 'character is one of a set of identical triplets'
     elif rand <= 88:
-
+        return 'witch prophesies death of the character' #here be 545
     elif rand <= 93:
-
+        return 'character born wit physical affliction' #874 go hurr
     elif rand <= 94:
-
+        return 'character born with psychic powers' #873
     elif rand <= 99:
-
+        return 'a mysterious stranger bestows a gift on the character at birth, ' + giftsTable863()
     else:
+        return 'mother was reputed to be a virgin'
+
+def parentTable114a():
+    rand = randint(1,20)
+    if rand <= 12:
+        return 'head of household has one occupation, ' #420-423 go hurr
+    elif rand <= 14:
+        return 'head of household has two jobs: ' #420-423 go hurr, again
+    elif rand <= 16:
+        return 'Head of household does not work, the other parent does. They work as ' #420-423 again
+    elif rand <= 18:
+        return 'Both parents work. Head of household is a ' #420-423 go hurr 'and other parent is a '
+    elif rand <= 19:
+        return 'Head of household was an adventurer, ' #table 757
+    elif rand <= 20:
+        return 'Head of household does not have an apparent occupation, but money is available when needed.'
+
+def parentTable114b():
+    rand = randint(1,3)
+    if rand == 1:
+        noteworthyItems = []*1
+        noteworthyItems[0] =
+    elif rand == 2:
+        noteworthyItems = []*2
+        noteworthyItems[0] =
+        noteworthyItems[1] =
+    elif rand == 3:
+        noteworthyItems = []*3
+        noteworthyItems[0] =
+        noteworthyItems[1] =
+        noteworthyItems[2] =
+
+def parentTable114bA():
+    rand = randint(1,20)
+    if rand == 1:
+        rand = randint(1,6)
+        if rand <= 3:
+            return 'noted for a personality trait, ' #647
+        elif rand <= 5:
+            return 'noted for a personality trait, ' #648
+        else:
+            return 'noted for an exotic personality trait, ' #649
+    elif rand == 2:
+        return 'had an unusual birth circumstance, ' + unusualBirthCircumstancesTable113()
+    elif rand == 3:
+        return 'devotes time to a hobby, ' #427
+    elif rand == 4:
+        return 'possesses an unusual item, ' + giftsTable863
+    elif rand == 5:
+        return 'is inventive, creative, and artistic'
+    elif rand == 6:
+        return 'affected by an exotic event which they speak of often, ' #544
+    elif rand == 7:
+        return 'tells tales of a legendary lost treasure'
+    elif rand == 8:
+        rand = randint(1,6)
+        if rand == 1:
+            return 'obsessed with a relationship with someone ' # 750
+        elif rand == 2:
+            return 'obsessed with an event from their past, ' #215
+        elif rand == 3:
+            return 'obsessed with working out of a personality trait, ' #fuck it, need to split here
+        elif rand == 4:
+            return 'obsessed with the accomplishment of a motivation, ' #page 8?
+        elif rand == 5:
+            return 'obsessed with accomplishing a future event, ' #217
+        elif rand == 6:
+            return 'obsessed with preventing a future event, ' #217
+    elif rand == 9:
+        return 'has a secret identity as a ' #occupation when I get to it
+    elif rand == 10:
+        return 'has a patron, ' #543
+    elif rand == 11:
+        return 'is a military veteran, ' #535a
+    elif rand == 12:
+        return 'is very religious, worships ' + deitiesTable864()
+    elif rand == 13:
+        rand = randint(1,4)
+        if rand == 1:
+            return 'does not like to talk about an important event in their past, ' #217
+        elif rand == 2:
+            return "does not like to talk about how they're persecuted for " #217
+        elif rand == 3:
+            return 'does not like to talk about their past and how important they are to their home town'
+        elif rand == 4:
+            return 'refuses to speak about a past event'
+    elif rand == 14:
+        rand = randint(1,4)
+        if rand == 1:
+            return 'particularly loving towards family'
+        elif rand == 2:
+            return 'does not love family or children'
+        elif rand == 3:
+            return 'is unfaithful to spouse'
+        elif rand == 4:
+            return 'has married more than once, current spouse is number ' + str(randint(1,4))
+    elif rand == 15:
+        return 'originally from a different culture'
+    elif rand == 16:
+        return 'originally from a different social status'
+    elif rand == 17:
+        return 'from a foreign land'
+    elif rand == 18:
+        rand = randint(1,6)
+    elif rand == 19:
+
+    elif rand == 20:
 
 def enslavedTable539():
     rand = randint(1,20)
@@ -649,14 +767,13 @@ relativesTable753 = {
 
 def guardiansTable754(cuMod):
     rand = randint(1,20)
+    rand = 10
     if rand <= 5:
         return random_choice(relativesTable753)
     elif rand <= 8:
         return 'raised in an orphanage'
     elif rand <= 10:
-        global charAdopted
-        charAdopted = True
-        familyTable106a(cuMod)
+        return familyTable106a(cuMod)
     elif rand <= 11:
         return 'raised by priests or monks of ' + deitiesTable864(cuMod)
     elif rand <= 12:
