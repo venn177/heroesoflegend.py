@@ -27,6 +27,11 @@ def main():
     if charAdopted == True:
         charFamily += ' (adopted)'
     print('Race: ' + charRace + ', Culture: ' + charCulture + ', Social Standing: ' + charSocial + ', Title: ' + nobleTitle + "\nFamily: " + str(charFamily))
+    siblingMale, siblingFemale, birthOrder = siblingsTable107()
+    if siblingMale == 'none':
+        print('Siblings: None')
+    else:
+        print('Siblings: ' + str(siblingMale) + ' male' + (('s', '')[siblingMale == 1]) + ' and ' + str(siblingFemale) + ' female' + (('s', '')[siblingFemale == 1]) + ', of which the character is the ' + birthOrder)
 
 def random_choice_index(chances):
 	dice = randint(1, sum(chances))

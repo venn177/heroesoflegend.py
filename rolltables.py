@@ -225,28 +225,63 @@ def familyTable106a(cuMod):
     elif rand <= 19:
         return "only a father"
 
-relativesTable753 = {
-    'first cousin': 1,
-    'second cousin': 2,
-    'distant cousin': 3,
-    'son': 4,
-    'daughter': 5,
-    'sister': 6,
-    'brother': 7,
-    'spouse': 8,
-    'aunt': 9,
-    'uncle': 10,
-    'great aunt': 11,
-    'great uncle': 12,
-    'mother': 13,
-    'father': 14,
-    'grandmother': 15,
-    'grandfather': 16,
-    'great grandmother': 17,
-    'great grandfather': 18,
-    'descendent': 19,
-    'unknown relation': 20
-}
+def siblingsTable107():
+    rand = randint(1,19) #support for 20, just not implementing yet
+    if rand <= 2:
+        return 'none', '', ''
+    elif rand <= 9:
+        rand = randint(1,3)
+    elif rand <= 15:
+        rand = randint(2,4)
+    elif rand <= 17:
+        rand = randint(3,6)
+    elif rand <= 19:
+        rand = randint(2,8)
+    #elif rand <= 20:
+    return siblingsTable107a(rand)
+
+def siblingsTable107a(number):
+    siblingMale = 0
+    siblingFemale = 0
+    for i in range(number):
+        rand = randint(1,20)
+        if rand <= 9:
+            siblingMale += 1
+        else:
+            siblingFemale += 1
+    totalSiblings = siblingMale + siblingFemale
+    birthOrder = ""
+    if totalSiblings == 2:
+        rand = randint(1,2)
+        if rand == 1:
+            birthOrder = 'first born'
+        else:
+            birthOrder = 'last born'
+    elif totalSiblings == 2:
+        rand = randint(1,3)
+        if rand == 1:
+            birthOrder = 'first born'
+        elif rand == 2:
+            birthOrder = 'middle born'
+        else:
+            birthOrder = 'last born'
+    else:
+        rand = randint(1,20)
+        if rand <= 2:
+            birthOrder =  'first born'
+        elif rand <= 10:
+            birthOrder =  'second born'
+        elif rand <= 16:
+            birthOrder =  'middle born'
+        elif rand <= 18:
+            birthOrder =  'second-to-last born'
+        elif rand <= 20:
+            birthOrder =  'last born'
+    return siblingMale, siblingFemale, birthOrder
+
+def birthOrderTable108(siblingNumber):
+    rand = randint(1,20)
+
 
 def enslavedTable539():
     rand = randint(1,20)
@@ -340,6 +375,29 @@ nonhumansTable751 = {
     'half orc': 2
 }
 
+relativesTable753 = {
+    'first cousin': 1,
+    'second cousin': 2,
+    'distant cousin': 3,
+    'son': 4,
+    'daughter': 5,
+    'sister': 6,
+    'brother': 7,
+    'spouse': 8,
+    'aunt': 9,
+    'uncle': 10,
+    'great aunt': 11,
+    'great uncle': 12,
+    'mother': 13,
+    'father': 14,
+    'grandmother': 15,
+    'grandfather': 16,
+    'great grandmother': 17,
+    'great grandfather': 18,
+    'descendent': 19,
+    'unknown relation': 20
+}
+
 def guardiansTable754(cuMod):
     rand = randint(1,20)
     if rand <= 5:
@@ -410,7 +468,7 @@ nobleTable758nomad = {
 nobleTable758barb = {
     'high king': 2,
     'king': 13,
-    'prince': 10,
+    'prince(ss)': 10,
     'chieftain': 20,
     'jarl': 15,
     'subchieftain': 10,
@@ -516,6 +574,8 @@ def unusualPetsTable759():
         petType = 'baby bear that stays a baby'
     elif rand <= 20:
         petType = 'something alien'
+    petAbility = specialPetAbilitiesTable760()
+    return petType + ' (' + petAbility + ')'
 
 def specialPetAbilitiesTable760():
     rand = randint(1,20)
@@ -564,6 +624,77 @@ def specialPetAbilitiesTable760():
         return 'can turn into mist at will'
     elif rand <= 20:
         return 'reroll shit'
+
+def companionTable761():
+    companionWho = companionTable761a()
+    companionWhy = companionTable761b()
+    companionPersonality = companionTable761c()
+    return companionWho + ', because ' + companionWhy + ', personality: ' + companionPersonality
+
+def companionTable761a():
+    rand = randint(1,9) #easily able to add 10 to this for the re-roll once everything is set up
+    if rand == 1:
+        return 'childhood friend'
+    elif rand == 2:
+        return 'a family member, ' + random_choice(relativesTable753)
+    elif rand == 3:
+        return 'a nonhuman, ' + random_choice(nonhumansTable751)
+    elif rand == 4:
+        return 'a stranger, ' #table 750 go hurr
+    elif rand == 5:
+        return 'an intelligent, articulate inanimate object'
+    elif rand == 6:
+        return 'a kid aged ' + str(randint(7,13))
+    elif rand == 7:
+        rand = randint(1,2)
+        if rand == 1:
+            return 'an older sibling'
+        else:
+            return 'a younger sibling'
+    elif rand == 8:
+        return 'an adventurer, ' #table 757
+    elif rand == 9:
+        return 'a former enemy or rival, ' #table 762 go hurr
+    #elif rand == 10:
+
+def companionTable761b():
+    rand = randint(1,9)
+    if rand == 1:
+        return 'character saved their life'
+    elif rand == 2:
+        return 'they seek a similar goal, are friendly rivals'
+    elif rand == 3:
+        return 'parents were companions in adventure'
+    elif rand == 4:
+        return 'they share the same enemy'
+    elif rand == 5:
+        return 'they were in the same place and in trouble at the same time'
+    elif rand == 6:
+        return 'the companion imagines the character a hero and wants to learn from them'
+    elif rand == 7:
+        return "the companion's original intent was to steal from the character"
+    elif rand == 8:
+        return 'companion feels a need to protect the character'
+    elif rand == 9:
+        return 'mysterious voices and feelings told the companion to seek out the character and join them'
+
+def companionTable761c():
+    rand = randint(1,10)
+    if rand <= 3:
+        return 'loyal friend'
+    elif rand <= 5:
+        return 'bumbling buffoon'
+    elif rand <= 6:
+        return 'grim, quiet ally'
+    elif rand <= 7:
+        return 'enthusiastic leader-type'
+    elif rand <= 8:
+        return 'a wise-cracking smart mouth who complains'
+    elif rand <= 9:
+        return 'rowdy fighter'
+    elif rand <= 10:
+        return 'incurable romantic'
+
 def giftsTable863():
     rand = randint(1,20)
     if rand <= 1:
