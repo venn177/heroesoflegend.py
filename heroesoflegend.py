@@ -41,6 +41,9 @@ def main():
         print('Birth circumstances: ' + birthOccurance)
     if legitBirth == False: #this needs to be after birth occurances
         print(illegitBirth)
+    #shit about parents go hurr
+    hohOccupation = parentTable114a()
+    print('Parents Info: ' + hohOccupation)
 
 
 def random_choice_index(chances):

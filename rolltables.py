@@ -179,6 +179,7 @@ def familyTable106(cuMod):
     else:
         raise ValueError("familyTable106 is reporting a randint error for some weird fucking reason. This shouldn't be possible.")
     return familyInfo, False
+
 def familyTable106a(cuMod):
     rand = randint(1,20) + cuMod
     if rand <= 8:
@@ -482,16 +483,16 @@ def parentTable114b():
     rand = randint(1,3)
     if rand == 1:
         noteworthyItems = []*1
-        noteworthyItems[0] =
+        noteworthyItems[0] = parentTAble114bA()
     elif rand == 2:
         noteworthyItems = []*2
-        noteworthyItems[0] =
-        noteworthyItems[1] =
+        noteworthyItems[0] = parentTAble114bA()
+        noteworthyItems[1] = parentTAble114bA()
     elif rand == 3:
         noteworthyItems = []*3
-        noteworthyItems[0] =
-        noteworthyItems[1] =
-        noteworthyItems[2] =
+        noteworthyItems[0] = parentTAble114bA()
+        noteworthyItems[1] = parentTAble114bA()
+        noteworthyItems[2] = parentTAble114bA()
 
 def parentTable114bA():
     rand = randint(1,20)
@@ -564,10 +565,50 @@ def parentTable114bA():
     elif rand == 17:
         return 'from a foreign land'
     elif rand == 18:
-        rand = randint(1,6)
+        rand = randint(1,5) # it's another re-roll
+        if rand == 1:
+            return 'has a rival ' #762
+        elif rand == 2:
+            return 'has many enemies ' #roll on 762 a lot
+        elif rand == 3:
+            return 'has ' + str(randint(3,13)) + ' close friends living nearby'
+        elif rand == 4:
+            return 'has ' + str(randint(2,7)) + ' jilted ex-lovers'
+        elif rand == 5:
+            return 'had a companion, ' + companionTable761()
+        #elif rand == 6:
     elif rand == 19:
-
+        return 'was horribly wounded, ' #870
     elif rand == 20:
+        return 'noted for extremely unusual personality: ' #649
+
+def childhoodEventsTable215a(solMod):
+    rand = randint(1,3)
+    if rand == 1:
+        childhoodEvents = []*1
+        childhoodEvents[0] = childhoodEventsTable215b(solMod)
+    elif rand == 2:
+        childhoodEvents = []*2
+        childhoodEvents[0] = childhoodEventsTable215b(solMod)
+        childhoodEvents[1] = childhoodEventsTable215b(solMod)
+    elif rand == 3:
+        childhoodEvents = []*3
+        childhoodEvents[0] = childhoodEventsTable215b(solMod)
+        childhoodEvents[1] = childhoodEventsTable215b(solMod)
+        childhoodEvents[2] = childhoodEventsTable215b(solMod)
+    rand = randint(1,3)
+    if rand == 1:
+        adolescentEvents = []*1
+        adolescentEvents[0] = childhoodEventsTable215b(solMod)
+    elif rand == 2:
+        adolescentEvents = []*2
+        adolescentEvents[0] = childhoodEventsTable215b(solMod)
+        adolescentEvents[1] = childhoodEventsTable215b(solMod)
+    elif rand == 3:
+        adolescentEvents = []*3
+        adolescentEvents[0] = childhoodEventsTable215b(solMod)
+        adolescentEvents[1] = childhoodEventsTable215b(solMod)
+        adolescentEvents[2] = childhoodEventsTable215b(solMod)
 
 def enslavedTable539():
     rand = randint(1,20)
