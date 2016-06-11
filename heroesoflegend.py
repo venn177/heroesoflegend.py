@@ -1,3 +1,4 @@
+#! python3
 import random
 from random import randint
 from rolltables import *
@@ -39,11 +40,15 @@ def main():
     if unusualBirth == True:
         birthOccurance = ", ".join(birthOccurance)
         print('Birth circumstances: ' + birthOccurance)
-    if legitBirth == False: #this needs to be after birth occurances
+    if legitBirth == False: #this needs to be after birth occurances because it fits better, thematically
         print(illegitBirth)
     #shit about parents go hurr
     hohOccupation = parentTable114a()
     print('Parents Info: ' + hohOccupation)
+    childhoodEvents, adolescentEvents = childhoodEventsTable215a(solMod)
+    childhoodEvents = " | ".join(childhoodEvents)
+    adolescentEvents = " | ".join(adolescentEvents)
+    print('Childhood: ' + childhoodEvents + "\nAdolescence: " + adolescentEvents)
 
 
 def random_choice_index(chances):

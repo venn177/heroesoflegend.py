@@ -481,18 +481,9 @@ def parentTable114a():
 
 def parentTable114b():
     rand = randint(1,3)
-    if rand == 1:
-        noteworthyItems = []*1
-        noteworthyItems[0] = parentTAble114bA()
-    elif rand == 2:
-        noteworthyItems = []*2
-        noteworthyItems[0] = parentTAble114bA()
-        noteworthyItems[1] = parentTAble114bA()
-    elif rand == 3:
-        noteworthyItems = []*3
-        noteworthyItems[0] = parentTAble114bA()
-        noteworthyItems[1] = parentTAble114bA()
-        noteworthyItems[2] = parentTAble114bA()
+    noteworthyItems = []
+    for _ in range(rand):
+        noteworthyItems.append(parentTable114bA)
 
 def parentTable114bA():
     rand = randint(1,20)
@@ -584,31 +575,251 @@ def parentTable114bA():
 
 def childhoodEventsTable215a(solMod):
     rand = randint(1,3)
-    if rand == 1:
-        childhoodEvents = []*1
-        childhoodEvents[0] = childhoodEventsTable215b(solMod)
-    elif rand == 2:
-        childhoodEvents = []*2
-        childhoodEvents[0] = childhoodEventsTable215b(solMod)
-        childhoodEvents[1] = childhoodEventsTable215b(solMod)
-    elif rand == 3:
-        childhoodEvents = []*3
-        childhoodEvents[0] = childhoodEventsTable215b(solMod)
-        childhoodEvents[1] = childhoodEventsTable215b(solMod)
-        childhoodEvents[2] = childhoodEventsTable215b(solMod)
+    childhoodEvents = []
+    adolescentEvents = []
+    for _ in range(rand):
+        childhoodEvents.append(childhoodEventsTable215b(solMod))
     rand = randint(1,3)
-    if rand == 1:
-        adolescentEvents = []*1
-        adolescentEvents[0] = childhoodEventsTable215b(solMod)
+    for _ in range(rand):
+        adolescentEvents.append(childhoodEventsTable215b(solMod))
+    return childhoodEvents, adolescentEvents
+
+def childhoodEventsTable215b(solMod):
+    rand = randint(1,17) + solMod
+    if rand == -2:
+        significantEvent = "all public assistance is terminated due to war. The character's family is involved in the riots in the poorer sectors of towns and villages"
+    elif rand == -1:
+        significantEvent = 'while foraging in a trash heap, the character finds ' + giftsTable863()
+    elif rand == 0:
+        significantEvent = childhoodEventsTable215b(0)
+    elif rand == 1:
+        significantEvent = 'friends involve the character in illegal activities, ' #534
     elif rand == 2:
-        adolescentEvents = []*2
-        adolescentEvents[0] = childhoodEventsTable215b(solMod)
-        adolescentEvents[1] = childhoodEventsTable215b(solMod)
+        significantEvent = 'a tragedy occurs, ' #528
     elif rand == 3:
-        adolescentEvents = []*3
-        adolescentEvents[0] = childhoodEventsTable215b(solMod)
-        adolescentEvents[1] = childhoodEventsTable215b(solMod)
-        adolescentEvents[2] = childhoodEventsTable215b(solMod)
+        significantEvent = 'the character learns an unusual skill, ' #876
+    elif rand == 4:
+        significantEvent = 'something wonderful occurs: ' #529
+    elif rand == 5:
+        significantEvent = "the character learns to be adept at the head of household's occupation. If there is no head of household, then select randomly."
+    elif rand == 6:
+        rand = randint(1,9)
+        significantEvent = 'the character runs away, '
+        if rand == 1:
+            significantEvent += 'and never returns'
+        elif rand == 2:
+            significantEvent += 'and returns after ' + str(randint(1,8)) + ' days'
+        elif rand == 3:
+            significantEvent += 'and returns after ' + str(randint(1,12)) + ' months'
+        elif rand == 4:
+            significantEvent += 'and returns after ' + str(randint(1,6)) + ' years'
+        elif rand == 5:
+            significantEvent += 'to a distant land'
+        elif rand == 6:
+            significantEvent += 'and joins the circus'
+        elif rand == 7:
+            significantEvent += 'and falls into the hands of criminals, ' #534
+        elif rand == 8:
+            significantEvent += 'and wanders the land, avoiding authorities'
+        elif rand == 9:
+            significantEvent += 'and lives with ' + random_choice(nonhumansTable751)
+    elif rand == 7:
+        significantEvent = 'character has a religious experience, ' #541
+    elif rand == 8:
+        rand = randint(1,6)
+        if rand == 1:
+            significantEvent = 'character is loved by parents'
+        elif rand == 2:
+            significantEvent = 'character is unloved'
+        elif rand == 3:
+            significantEvent = "family has great plans for the character's future"
+        elif rand == 4:
+            significantEvent = "family does not approve of character's friends"
+        elif rand == 5:
+            significantEvent = "family encourages character's interests"
+        elif rand == 6:
+            rand = randint(1,2)
+            significantEvent = (("mother", "father")[rand == 1]) + ' is distant towards the character'
+    elif rand == 9:
+        significantEvent = 'character serves a patron, ' #543
+    elif rand <= 11:
+        significantEvent = 'age-specific event'
+    elif rand == 12:
+        significantEvent = 'character gains a friend, ' #750
+    elif rand == 13: #skipped the real 13 and 14 for the time being
+        significantEvent = 'an exotic event occurs, ' #544
+    elif rand == 14:
+        rand = randint(1,2)
+        significantEvent = "character's parents split up, character stays with " + (("mother", "father")[rand == 1])
+    elif rand == 15:
+        rand = randint(1,4)
+        if rand == 1:
+            significantEvent = 'character is molested by ' #750
+        elif rand == 2:
+            significantEvent = 'a tragedy occurs, ' #528
+        elif rand == 3:
+            significantEvent = 'character angers an old woman who puts a curse on them, ' #868
+        elif rand == 4:
+            significantEvent = 'character acquires a rival, ' #762
+    elif rand == 16:
+        rand = randint(1,4)
+        if rand == 1:
+            significantEvent = 'character inherits a large sum of money'
+        elif rand == 2:
+            significantEvent = 'a fairy blesses the character as a reward for a good deed, ' #869
+        elif rand == 3:
+            significantEvent = 'something wonderful occurs, ' #529
+        elif rand == 4:
+            significantEvent = 'character acquires a companion, ' #761
+    elif rand == 17:
+        significantEvent = 'age-specific event occurs, ' #216a/216b
+    elif rand == 18:
+        significantEvent = 'character develops jaded tastes for exotic and expensive pleasures'
+    elif rand == 19:
+        significantEvent = childhoodEventTables215(0)
+    elif rand == 20:
+        significantEvent = "rivals force the character's family to move somewhere new"
+    elif rand == 21:
+        significantEvent = 'something wonderful occurs, ' #529
+    elif rand == 22:
+        significantEvent = 'a tragedy occurs, ' #528
+    elif rand == 23:
+        significantEvent = 'character is betrothed in a political marriage'
+    elif rand == 24:
+        significantEvent = 'head of household is made a close advisor of a local ruler'
+    elif rand == 25: #also skipped 25
+        significantEvent = 'family travels widely, visiting several foreign lands'
+    elif rand == 26:
+        significantEvent = 'a tutor teaches the character an unusual skill, ' #876
+    elif rand == 27:
+        significantEvent = 'family throws extravagant birthday party for character. Character acquires special gift, ' + giftsTable863()
+    elif rand == 28:
+        significantEvent = 'character exhibits exotic personality, ' #649
+    elif rand == 29:
+        significantEvent = 'family gives character ' + str(randint(1,10)) + ' slaves to do with as they see fit'
+    elif rand == 30:
+        significantEvent = 'family gives character personal estate with ' + str(randint(1,10)) + ' square miles of property'
+    return significantEvent
+
+def childhoodEventsTable216a():
+    rand = randint(1,20)
+    if rand == 1:
+        return 'a neighbor schools the character, improving their literacy'
+    elif rand == 2:
+        return 'character becomes emotionally attached to a toy for ' + str(randint(2,20)) + ' years'
+    elif rand == 3:
+        return 'character has a collection of related things, such as rocks, dolls, animal skulls, etc.'
+    elif rand == 4:
+        return 'character has a close friendship with a sibling or cousin'
+    elif rand == 5:
+        return 'character has an imaginary friend'
+    elif rand == 6:
+        return 'character is a child prodigy with an unusual skill, ' #876
+    elif rand == 7:
+        return 'character learns use of a weapon appropriate to their culture and social status'
+    elif rand == 8:
+        return 'character and a friend discover secret hiding place near home'
+    elif rand == 9:
+        return 'character becomes proficient at a sporting event'
+    elif rand == 10:
+        return 'friend of the family, an old warrior, tells the character tales of adventure'
+    elif rand == 11:
+        return 'character becomes well-known for the occurance of an event in their life, ' + childhoodEventTables215(0)
+    elif rand == 12:
+        rand = randint(1,10)
+        return "one of the character's grandparents dies of natural causes in the presence of the character " + (("that grandparent entrusts the character with a secret", "")[rand < 7])
+    elif rand == 13:
+        return 'character witnesses a crime being committed by ' + str(randint(1,4)) + ' people. They are unable to catch him. The crime is ' #875
+    elif rand == 14:
+        return 'race specific event, fuck'
+    elif rand == 15:
+        return 'an exotic event occurs, ' #544
+    elif rand == 16:
+        return 'character discovers they are a near exact twin of a young noble, ' + random_choice(nobleTable758civil)
+    elif rand == 17:
+        return 'a tragedy occurs, ' #528
+    elif rand == 18:
+        return 'something wonderful occurs, ' #529
+    elif rand == 19:
+        return childhoodEventsTable216b()
+    elif rand == 20:
+        return 'character acquires a hobby, ' #427
+
+def childhoodEventsTable216b():
+    rand = randint(1,19)
+    if rand == 1:
+        return 'character learns to use weapon appropriate to their culture and social status'
+    elif rand == 2:
+        return 'to be fashionable, character gets tatto on their face, ' #866
+    elif rand <= 4:
+        return 'apprenticed to learn an occupation, ' #419
+    elif rand == 5:
+        return 'a wizard teaches the character a simple spell'
+    elif rand == 6:
+        eventPresuppose = 'character is accused of a crime which they did not commit (' #875
+        rand = randint(1,6)
+        if rand == 1:
+            return eventPresuppose + ', is imprisoned, ' #540 here
+        elif rand == 2:
+            return eventPresuppose + ', is stockaded and flogged publicly as an example to others'
+        elif rand == 3:
+            rand = randint(1,3)
+            eventPresuppose = eventPresuppose + ', is tortured to reveal the names of accomplices'
+            if rand == 3:
+                eventPresuppose = eventPresuppose #870
+        elif rand == 4:
+            return eventPresuppose + ', is found innocent, but not before being humiliated'
+        elif rand == 5:
+            return eventPresuppose + ', is sentenced to death, but is rescued by outlaws.' #534 goes here
+        elif rand == 6:
+            return eventPresuppose + ', is sold into slavery: ' + enslavedTable539()
+    elif rand == 7:
+        return 'character learns an unusual skill, ' #876
+    elif rand == 8:
+        return 'character learns a hobby, ' #427
+    elif rand == 9:
+        return "character learns head of household's occupation"
+    elif rand == 10:
+        eventPresuppose = 'character joins the military because '
+        rand = randint(1,4)
+        if rand == 1:
+            eventPresuppose = eventPresuppose + 'they were drafted, '
+        elif rand == 2:
+            eventPresuppose = eventPressupose + 'they patriotically volunteered, '
+        elif rand == 3:
+            eventPresuppose = eventPresuppose + 'forced to, '
+        elif rand == 4:
+            eventPresuppose = eventPresuppose + 'on mistake, '
+        eventPresuppose = eventPresuppose + 'Info: ' #535
+    elif rand == 11:
+        rand = randint(1,5)
+        if rand == 5:
+            return 'character participated in a successful rebellion'
+        else:
+            rand = randint(1,10)
+            if rand != 10:
+                return 'character participated in a failed rebellion, but only a few close friends knew of it'
+            else:
+                return 'character was known to participate in a failed rebellion and is now an outlaw'
+    elif rand == 12:
+        return 'character becomes famous for ' + childhoodEventTables215b()
+    elif rand <= 14:
+        return 'character has a romantic encounter, ' #542
+    elif rand == 15:
+        return 'character learns to speak another language'
+    elif rand == 16:
+        return 'race specific event. fuck.'
+    elif rand == 17:
+        return 'an exotic event occurs, ' #544
+    elif rand == 18:
+        return 'a tragedy occurs, ' #528
+    elif rand == 19:
+        return 'something wonderful occurs, ' #529
+#    elif rand == 20:
+
+def adulthoodSignificantEvents(solMod):
+    rand = randint(2,40) + solMod
+
 
 def enslavedTable539():
     rand = randint(1,20)
