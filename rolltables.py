@@ -467,9 +467,9 @@ def unusualBirthCircumstancesTable113():
 def parentTable114a():
     rand = randint(1,20)
     if rand <= 12:
-        return 'head of household has one occupation, ' #420-423 go hurr
+        return 'Head of household has one occupation, ' #420-423 go hurr
     elif rand <= 14:
-        return 'head of household has two jobs: ' #420-423 go hurr, again
+        return 'Head of household has two jobs: ' #420-423 go hurr, again
     elif rand <= 16:
         return 'Head of household does not work, the other parent does. They work as ' #420-423 again
     elif rand <= 18:
@@ -597,11 +597,11 @@ def childhoodEventsTable215b(solMod):
     elif rand == 2:
         significantEvent = 'a tragedy occurs, ' #528
     elif rand == 3:
-        significantEvent = 'the character learns an unusual skill, ' #876
+        significantEvent = 'The character learns an unusual skill, ' #876
     elif rand == 4:
         significantEvent = 'something wonderful occurs: ' #529
     elif rand == 5:
-        significantEvent = "the character learns to be adept at the head of household's occupation. If there is no head of household, then select randomly."
+        significantEvent = "The character learns to be adept at the head of household's occupation. If there is no head of household, then select randomly."
     elif rand == 6:
         rand = randint(1,9)
         significantEvent = 'the character runs away, '
@@ -676,7 +676,7 @@ def childhoodEventsTable215b(solMod):
     elif rand == 18:
         significantEvent = 'character develops jaded tastes for exotic and expensive pleasures'
     elif rand == 19:
-        significantEvent = childhoodEventsTable215(0)
+        significantEvent = childhoodEventsTable215b(0)
     elif rand == 20:
         significantEvent = "rivals force the character's family to move somewhere new"
     elif rand == 21:
@@ -906,7 +906,7 @@ def adulthoodSignificantEventsTable217a(solMod):
         if rand == 1:
             eventPresuppose = eventPresuppose + 'they were drafted, '
         elif rand == 2:
-            eventPresuppose = eventPressupose + 'they patriotically volunteered, '
+            eventPresuppose = eventPresuppose + 'they patriotically volunteered, '
         elif rand == 3:
             eventPresuppose = eventPresuppose + 'forced to, '
         elif rand == 4:
@@ -951,6 +951,448 @@ def adulthoodSignificantEventsTable217a(solMod):
     elif rand <= 55:
         return 'a radical change in political structure strips the character of all land and nobility.'
 
+def apprenticeshipsTable419a():
+    rand = randint(1,3)
+    if rand == 1:
+        return random_choice(craftsTable424a)
+    elif rand == 2:
+        return random_choice(craftsTable424b)
+    elif rand == 3:
+        return random_choice(craftsTable424c)
+
+def apprenticeshipsTable419b():
+    rand = randint(1,9) #again, not doing the re-roll shit
+    if rand == 1:
+        return "character's master is known for their strong personality"
+    elif rand == 2:
+        return "character manages to accidentally break the master's valuable collection of ceramic pots. For this, he's expelled."
+    elif rand == 3:
+        return "Character stumbles upon a lost secret of the craft, which his master takes credit for."
+    elif rand == 4:
+        return "Character continues to study the craft with his master for an extra " + str(randint(1,6)) + " years."
+    elif rand == 5:
+        return "The character discovered that the master's shop is a front for a criminal network."
+    elif rand == 6:
+        return "The master is world-renowned in their craft."
+    elif rand == 7:
+        rand = randint(1,2)
+        return "A " + (("female", "male")[rand == 1]) + " apprentice becomes best friends with the character. That person would later become a master of the craft."
+    elif rand == 8:
+        return "An exotic event occurs, affecting the character's master: " #544
+    elif rand == 9:
+        return "Character accompanies their master on a long journey: " + adulthoodSignificantEventsTable217a(randint(1,5))
+
+def primitiveOccupationsTable420a():
+    rand = randint(1,20)
+    if rand <= 9:
+        return 'fisherman'
+    elif rand <= 18:
+        return 'hunter'
+    elif rand <= 19:
+        return 'warrior'
+    elif rand == 20:
+        return primitiveOccupationsTable420b()
+
+def primitiveOccupationsTable420b():
+    rand = randint(1,4)
+    if rand == 1:
+        return 'shaman'
+    elif rand == 2:
+        return 'basket weaver'
+    elif rand == 3:
+        return 'artist'
+    elif rand == 4:
+        return 'toolmaker'
+
+def nomadOccupationsTable421a():
+    rand = randint(1,20)
+    if rand <= 2:
+        return random_choice(craftsTable424a)
+    elif rand <= 12:
+        return 'herder'
+    elif rand <= 16:
+        return 'hunter'
+    elif rand <= 18:
+        return 'warrior'
+    elif rand == 19:
+        return 'merchant'
+    elif rand == 20:
+        return nomadOccupationsTable421b()
+
+def nomadOccupationsTable421b():
+    rand = randint(1,10)
+    if rand == 1:
+        return 'priest'
+    elif rand == 2:
+        return 'healer'
+    elif rand == 3:
+        return 'adventurer, ' #757
+    elif rand == 4:
+        return 'career criminal, ' #755
+    elif rand == 5:
+        return 'tentmaker'
+    elif rand == 6:
+        return 'weapon master'
+    elif rand == 7:
+        return 'counselor/philosopher'
+    elif rand == 8:
+        return '423a'
+    elif rand == 9:
+        return 'horsemaster'
+    elif rand == 10:
+        return 'entertainer'
+
+def barbarianOccupationsTable422a():
+    rand = randint(1,20)
+    if rand <= 2:
+        return random_choice(craftsTable424a)
+    elif rand <= 8:
+        return 'farmer'
+    elif rand <= 11:
+        return 'fisherman'
+    elif rand <= 13:
+        return 'herder'
+    elif rand <= 15:
+        return 'hunter'
+    elif rand <= 17:
+        return 'warrior'
+    elif rand == 18:
+        return random_choice(craftsTable424b)
+    elif rand == 19:
+        return 'merchant' #425
+    elif rand == 20:
+        return barbarianOccupationsTable422b()
+
+def barbarianOccupationsTable422b():
+    rand = randint(1,20)
+    if rand <= 7:
+        return civilizedOccupationsTable423a()
+    elif rand <= 9:
+        return 'priest'
+    elif rand == 10:
+        return 'healer'
+    elif rand == 11:
+        return 'adventurer, ' #757
+    elif rand == 12:
+        return 'ship builder'
+    elif rand == 13:
+        return 'career criminal, ' #755
+    elif rand == 14:
+        return 'wizard, witch, or warlock'
+    elif rand == 15:
+        return 'counselor'
+    elif rand == 16:
+        return 'horsemaster'
+    elif rand == 17:
+        return 'explorer'
+    elif rand == 18:
+        return 'entertainer'
+    elif rand == 19:
+        return 'forester'
+    elif rand == 20:
+        return random_choice(craftsTable424c)
+
+def civilizedOccupationsTable423a(solMod):
+    rand = randint(1,10) + solMod
+    if rand == -2:
+        return nomadOccupationsTable421a()
+    elif rand <= 5:
+        return civilizedOccupationsTable423b()
+    elif rand == 6:
+        return barbarianOccupationsTable422a()
+    elif rand == 7:
+        return civilizedOccupationsTable423e()
+    elif rand <= 11:
+        return civilizedOccupationsTable423c()
+    elif rand <= 14:
+        return civilizedOccupationsTable423d()
+    elif rand == 15:
+        return civilizedOccupationsTable423e()
+    elif rand <= 23:
+        return civilizedOccupationsTable423d()
+
+def civilizedOccupationsTable423b():
+    rand = randint(1,20)
+    if rand == 1:
+        return 'beggar'
+    elif rand <= 6:
+        rand = randint(1,4)
+        if rand == 1:
+            return 'freeman farmer'
+        elif rand == 2:
+            return 'herder'
+        elif rand == 3:
+            return 'sharecropper'
+        elif rand == 4:
+            return 'serf'
+    elif rand <= 7:
+        return 'tinker'
+    elif rand <= 8:
+        return 'sailor'
+    elif rand <= 10:
+        rand = randint(1,6)
+        if rand == 1:
+            return 'miner'
+        elif rand == 2:
+            return 'stone cutter'
+        elif rand == 3:
+            return 'wood cutter'
+        elif rand == 4:
+            return 'charcoal burner'
+        elif rand == 5:
+            return 'peat cutter'
+        elif rand == 6:
+            return 'unskilled laborer'
+    elif rand <= 11:
+        return 'launderer'
+    elif rand <= 14:
+        return 'fisherman'
+    elif rand <= 15:
+        rand = randint(1,6)
+        if rand == 1:
+            return 'butler'
+        elif rand == 2:
+            return 'cook'
+        elif rand == 3:
+            return 'housekeeper'
+        elif rand == 4:
+            return 'gardener'
+        elif rand == 5:
+            return 'stable hand'
+        elif rand == 6:
+            return 'footman'
+    elif rand <= 16:
+        rand = randint(1,4)
+        if rand == 1:
+            return 'bartender'
+        elif rand == 2:
+            return 'serving person'
+        elif rand == 3:
+            return 'housekeeper'
+        elif rand == 4:
+            return 'bouncer'
+    elif rand <= 17:
+        return 'street vendor'
+    elif rand <= 18:
+        return 'soldier' #535
+    elif rand == 19:
+        return random_choice(craftsTable424a)
+    elif rand == 20:
+        return 'second hand shop'
+
+def civilizedOccupationsTable423c():
+    rand = randint(1,20)
+    if rand == 1:
+        return 'money lender'
+    elif rand <= 5:
+        return 'merchant'
+    elif rand <= 6:
+        return 'business owner, ' + civilizedOccupationsTable423b()
+    elif rand <= 8:
+        return random_choice(craftsTable424b)
+    elif rand <= 9:
+        rand = randint(1,4)
+        if rand == 1:
+            return 'weapon instructor'
+        elif rand == 2:
+            return 'unusual skill instructor, ' #876
+        elif rand == 3:
+            rand = randint(1,4)
+            if rand == 1:
+                addIt = 'combat skills'
+            elif rand == 2:
+                addIt = 'horse skills'
+            elif rand == 3:
+                addIt = 'forestry skills'
+            elif rand == 4:
+                addIt = 'naval skills'
+            return 'military instrutor in ' + addIt
+        elif rand == 4:
+            rand = randint(1,3)
+            if rand == 1:
+                random_choice(craftsTable424a)
+            elif rand == 2:
+                random_choice(craftsTable424b)
+            elif rand == 3:
+                random_choice(craftsTable424c)
+    elif rand <= 10:
+        return 'government official, ' #752
+    elif rand <= 11:
+        return random_choice(craftsTable424a)
+    elif rand <= 12:
+        return 'chef'
+    elif rand <= 13:
+        return 'an overseer of ' + civilizedOccupationsTable423a()
+    elif rand <= 14:
+        return 'innkeeper'
+    elif rand <= 15:
+        return 'scribe'
+    elif rand <= 16:
+        return 'guide/pilot'
+    elif rand <= 17:
+        return 'ship captain (not own ship)'
+    elif rand <= 18:
+        return 'engineer'
+    elif rand <= 19:
+        return 'teacher'
+    elif rand <= 20:
+        return 'tavern owner'
+
+def civilizedOccupationsTable423d():
+    rand = randint(1,20)
+    if rand == 1:
+        return 'alchemist'
+    elif rand == 2:
+        return 'engineer'
+    elif rand == 3:
+        return 'architect'
+    elif rand == 4:
+        return 'chlurgeon'
+    elif rand <= 7:
+        return 'merchant' #425
+    elif rand == 8:
+        return 'craftsmen' #424c
+    elif rand == 9:
+        return 'courtier/courtesar'
+    elif rand == 10:
+        return 'diplomat'
+    elif rand == 11:
+        return 'author/playwrite/poet'
+    elif rand == 12:
+        return 'litigation trickster'
+    elif rand == 13:
+        return 'philosopher'
+    elif rand == 14:
+        return 'crafter' #424b
+    elif rand == 15:
+        return 'interpreter'
+    elif rand == 16:
+        return 'government official' #752
+    elif rand == 17:
+        return 'banker'
+    elif rand == 18:
+        return 'business owner: ' + civilizedOccupationsTable423a()
+    elif rand == 19:
+        return 'landlord'
+    elif rand == 20:
+        return 'craftmaster' #lots of shit here
+
+def civilizedOccupationsTable423e():
+    rand = randint(1,20)
+    if rand == 1:
+        return 'assassin'
+    elif rand == 2:
+        return 'gladiator'
+    elif rand == 3:
+        return 'adventurer, ' #757
+    elif rand == 4:
+        return 'priest' #541b
+    elif rand == 5:
+        return 'wizard'
+    elif rand == 6:
+        return 'jack of all trades: ' + civilizedOccupationsTable423a() + ' and ' + civilizedOccupationsTable423a() + ' and ' + civilizedOccupationsTable423a()
+    elif rand == 7:
+        return 'career criminal, ' #755
+    elif rand == 8:
+        return 'entertainer'
+    elif rand == 9:
+        return 'printer'
+    elif rand == 10:
+        return 'private detective or spy'
+    elif rand == 11:
+        return 'professional guild thief, ' #534
+    elif rand == 12:
+        return 'astrologer/diviner/fortune teller'
+    elif rand == 13:
+        return 'rumormonger'
+    elif rand == 14:
+        rand = randint(1,4)
+        if rand == 1:
+            return 'doomsayer'
+        elif rand == 2:
+            return 'oracle'
+        elif rand == 3:
+            return 'hermit'
+        elif rand == 4:
+            return 'seer'
+    elif rand == 15:
+        return 'charlot or horse racer'
+    elif rand == 16:
+        return 'professional gambler'
+    elif rand == 17:
+        return 'healer/herbalist'
+    elif rand == 18:
+        return 'scientist'
+    elif rand == 19:
+        return 'veterinarian'
+    elif rand == 20:
+        return 'ship builder'
+
+craftsTable424a = {
+    'blacksmith': 1,
+    'potter': 1,
+    'weaver': 1,
+    'stone mason': 1,
+    'baker': 1,
+    'butcher': 1,
+    'carpenter': 1,
+    'tanner': 1,
+    'rope and net maker': 1,
+    'leather worker': 1,
+    'cobbler': 1,
+    'painter': 1,
+    'spinner': 1,
+    'dyer': 1,
+    'fletcher': 1,
+    'sailmaker': 1,
+    'saddle and riding harness maker': 1
+}
+
+craftsTable424b = {
+    'shipwright': 1,
+    'wheel/cartwright': 1,
+    'distiller': 1,
+    'fuller': 1,
+    'sign painter': 1,
+    'chandler': 1,
+    'miller': 1,
+    'armor smith': 1,
+    'sausage maker': 1,
+    'brewer': 1,
+    'animal trainer': 1,
+    'plasterer': 1,
+    'glazier': 1,
+    'tailor': 1,
+    'copper and pewter smith': 1,
+    'glassblower': 1,
+    'cabinet maker': 1,
+    'weapon master': 1,
+    'dress maker': 1,
+    'sword-dancer': 1
+}
+
+craftsTable424c = {
+    'silver smith': 1,
+    'costumer': 1,
+    'goldsmith': 1,
+    'jeweler': 1,
+    'instrument maker': 1,
+    'clock maker': 1,
+    'cartographer': 1,
+    'perfumer': 1,
+    'animal trainer': 1,
+    'apothecary': 1,
+    'furrier': 1,
+    'horse breeder': 1,
+    'artist': 1,
+    'wine maker': 1,
+    'oculist': 1,
+    'pastry chef': 1,
+    'confectioner': 1,
+    'paper and ink maker': 1,
+    'sword smith': 1,
+    'illuminator': 1
+}
 
 def enslavedTable539():
     rand = randint(1,20)
