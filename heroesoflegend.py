@@ -16,8 +16,6 @@ def main():
     global charAdopted
     charAdopted = False
     charSocial, solMod, nobleTitle, tiMod = socialTable103(cuMod, tiMod, charCulture)
-    if nobleTitle == '':
-        nobleTitle = 'None'
     legitBirth = birthTable104(cuMod)
     if legitBirth == False:
         if cuMod >= 0:
@@ -27,7 +25,7 @@ def main():
     charFamily, charAdopted = familyTable106(cuMod)
     if charAdopted == True:
         charFamily = '(adopted) ' + str(charFamily)
-    print('Race: ' + charRace + ' | Culture: ' + charCulture + ' | Social Standing: ' + charSocial + ' | Title: ' + nobleTitle + "\nFamily: " + str(charFamily) + '.')
+    print('Race: ' + charRace + ' | Culture: ' + charCulture + ' | Social Standing: ' + charSocial + ((' | Title: ', "")[nobleTitle == ""]) + nobleTitle + "\nFamily: " + str(charFamily) + '.')
     siblingMale, siblingFemale, birthOrder = siblingsTable107()
     if siblingMale == 'none':
         print('Siblings: None')
@@ -39,21 +37,29 @@ def main():
     birthOccurance, unusualBirth = unusualBirthTable112(biMod)
     if unusualBirth == True:
         birthOccurance = ", ".join(birthOccurance)
-        print('Birth circumstances: ' + birthOccurance)
+        print('Birth Circumstances: ' + birthOccurance.capitalize())
     if legitBirth == False: #this needs to be after birth occurances because it fits better, thematically
         print(illegitBirth)
     #shit about parents go hurr
-    hohOccupation = parentTable114a()
+    hohOccupation = parentTable114a(charCulture)
     print('Parents Info: ' + hohOccupation)
     childhoodEvents, adolescentEvents = childhoodEventsTable215a(solMod)
+    childhoodEvents = capitalize_shit(childhoodEvents)
+    adolescentEvents = capitalize_shit(adolescentEvents)
     childhoodEvents = " | ".join(childhoodEvents)
     adolescentEvents = " | ".join(adolescentEvents)
     print('Childhood: ' + childhoodEvents + "\nAdolescence: " + adolescentEvents)
     adulthoodEvents = adulthoodSignificantEventsTable217(solMod)
+    adulthoodEvents = capitalize_shit(adulthoodEvents)
     adulthoodEvents = " | ".join(adulthoodEvents)
     print('Adulthood: ' + adulthoodEvents )
 
-
+def capitalize_shit(array): #I don't feel like re-writing everything from lower-case in the rolltables, so fuck it. Here.
+    i = 0
+    for each in array:
+        array[i] = array[i].capitalize()
+        i += 1
+    return array
 def random_choice_index(chances):
 	dice = randint(1, sum(chances))
 	running_sum = 0

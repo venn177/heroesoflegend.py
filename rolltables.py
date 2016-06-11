@@ -122,6 +122,7 @@ def illegitBirthTable105(cuMod):
 
 def familyTable106(cuMod):
     rand = randint(1,20) + cuMod
+    global charSocial
     if rand <= 8:
         familyInfo = 'Mother and father only'
     elif rand <= 12:
@@ -169,11 +170,9 @@ def familyTable106(cuMod):
         else:
             return familyTable106a(cuMod), True
     elif rand <= 24:
-        global charSocial
         charSocial = 'destitute'
         familyInfo = 'none, left to fend for yourself'
     elif rand <= 27:
-        global charSocial
         charSocial = 'poor'
         familyInfo = 'none, raised in an orphanage'
     else:
@@ -456,15 +455,15 @@ def unusualBirthCircumstancesTable113():
     elif rand <= 88:
         return 'witch prophesies death of the character' #here be 545
     elif rand <= 93:
-        return 'character born wit physical affliction' #874 go hurr
+        return 'character born with physical affliction' #874 go hurr
     elif rand <= 94:
         return 'character born with psychic powers' #873
     elif rand <= 99:
-        return 'a mysterious stranger bestows a gift on the character at birth, ' + giftsTable863()
+        return 'a mysterious stranger bestows a gift on the character at birth: ' + giftsTable863()
     else:
         return 'mother was reputed to be a virgin'
 
-def parentTable114a():
+def parentTable114a(charCulture):
     rand = randint(1,20)
     if rand <= 12:
         return 'Head of household has one occupation, ' #420-423 go hurr
@@ -780,14 +779,14 @@ def childhoodEventsTable216b():
     elif rand == 9:
         return "character learns head of household's occupation"
     elif rand == 10:
-        eventPresuppose = 'character joins the military because '
+        eventPresuppose = 'character joins the military '
         rand = randint(1,4)
         if rand == 1:
-            eventPresuppose = eventPresuppose + 'they were drafted, '
+            eventPresuppose = eventPresuppose + 'because they were drafted, '
         elif rand == 2:
-            eventPresuppose = eventPressuppose + 'they patriotically volunteered, '
+            eventPresuppose = eventPressuppose + 'because they patriotically volunteered, '
         elif rand == 3:
-            eventPresuppose = eventPresuppose + 'forced to, '
+            eventPresuppose = eventPresuppose + 'because they forced to, '
         elif rand == 4:
             eventPresuppose = eventPresuppose + 'on mistake, '
         eventPresuppose = eventPresuppose + 'Info: ' #535
@@ -847,9 +846,9 @@ def adulthoodSignificantEventsTable217a(solMod):
             else:
                 return 'character was known to participate in a failed rebellion and is now an outlaw'
     elif rand == 7:
-        return 'character serves a patron, ' #543
+        return 'Character serves a patron, ' #543
     elif rand == 8:
-        eventPresuppose = 'character has wanderlust and decides to travel for ' + str(randint(1,6)) + ' years.  During this time, the character '
+        eventPresuppose = 'Character has wanderlust and decides to travel for ' + str(randint(1,6)) + ' years.  During this time, the character '
         rand = randint(1,6)
         if rand == 1:
             eventPresuppose = eventPresuppose + 'visits major cities and towns in the land.'
@@ -911,7 +910,7 @@ def adulthoodSignificantEventsTable217a(solMod):
             eventPresuppose = eventPresuppose + 'forced to, '
         elif rand == 4:
             eventPresuppose = eventPresuppose + 'on mistake, '
-        eventPresuppose = eventPresuppose + 'Info: ' #535
+        return eventPresuppose + 'Info: ' #535
     elif rand <= 30:
         return 'character has a romantic encounter, ' #542
     elif rand == 31:
@@ -936,6 +935,7 @@ def adulthoodSignificantEventsTable217a(solMod):
             return eventPresuppose + ', is sentenced to death, but is rescued by outlaws.' #534 goes here
         elif rand == 6:
             return eventPresuppose + ', is sold into slavery: ' + enslavedTable539() + ')'
+        return eventPresuppose
     elif rand <= 36: #skipping 37-38, as well as 39
         return 'character learns an occupation, ' #420-423
     elif rand <= 39:
@@ -2069,7 +2069,7 @@ birthmarksTable866 = {
     'claw': 1,
     'eagle': 1,
     'fish': 1,
-    'animal (you decide)': 1
+    'a random animal': 1
 }
 
 bodyLocationTable867 = {
