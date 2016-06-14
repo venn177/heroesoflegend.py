@@ -2341,3 +2341,25 @@ Table = {
     '':
 }
 '''
+def allergiestable649D():
+    rand=randint(1,10)
+    if rand == 1:
+        return "fur"
+    if rand == 2:
+        return "dust"
+    if rand == 3:
+        return "insect bites"
+    if rand == 4:
+        return "common food type"
+    if rand == 5:
+        return "unusual food type"
+    if rand == 6:
+        return "exotic food type"
+    if rand == 7:
+        return "common medicine type"
+    if rand == 8:
+        return "unusual medicine type"
+    if rand == 9:
+        return "mold"
+    if rand == 10:
+        return "magic"
