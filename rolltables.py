@@ -2341,3 +2341,84 @@ Table = {
     '':
 }
 '''
+
+def phobiasTable649C():
+    rand=randint(2,40)
+    if rand == 2:
+       return "monophobia"
+    elif rand == 3:
+        return "zoophobia"
+    elif rand == 4:
+        return "taphophovia"
+    elif rand == 5:
+        return "hematophobia"
+    elif rand == 6:
+        return "ailutoophobia"
+    elif rand == 7:
+        return "psychrophobia"
+    elif rand == 8:
+        return "chromophobia"
+    elif rand == 9:
+        return "necrophobia"
+    elif rand == 10:
+        return "achluophobia"
+    elif rand == 11:
+        return "kenophobia"
+    elif rand == 12:
+        return "claustrophobia"
+    elif rand == 13:
+        return "gynephobia"
+    elif rand == 14:
+        return "pyrophobia"
+    elif rand == 15:
+        return "aerophobia"
+    elif rand == 16:
+        return "theophobia"
+    elif rand == 17:
+        return "phasmophobia"
+    elif rand == 18:
+        return "barophobia"
+    elif rand == 19:
+        return "trichophobia"
+    elif rand == 20:
+        return "acrophobia"
+    elif rand == 21:
+        return "entomophobia"
+    elif rand == 22:
+        return "magiophobia"
+    elif rand == 23:
+        return "androphobia"
+    elif rand == 24:
+        return "ballistophobia"
+    elif rand == 25:
+        return "teratophobia"
+    elif rand == 26:
+        return "nyctophobia"
+    elif rand == 27:
+        return "agoraphobia"
+    elif rand == 28:
+        return "erotophobia"
+    elif rand == 29:
+        return "toxiphobia"
+    elif rand == 30:
+        return "ombrophobia"
+    elif rand == 31:
+        return "peccatophobia"
+    elif rand == 32:
+        return "blennophobia"
+    elif rand == 33:
+        return "orphidophobia"
+    elif rand == 34:
+        return "arachnophobia"
+    elif rand == 35:
+        return "astaphobia"
+    elif rand == 36:
+        return "dendrophobia"
+    elif rand == 37:
+        return "hydrophobia"
+    elif rand == 38:
+        return "anemophobia"
+    elif rand == 39:
+        return "traumatophobia"
+    elif rand == 40:
+        return "more than one fear, reroll one die three times and add one"
