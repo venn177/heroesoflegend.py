@@ -14,6 +14,7 @@ def main():
     tiMod = 0
     global charSocial
     global charAdopted
+    global solMod
     charAdopted = False
     charSocial, solMod, nobleTitle, tiMod = socialTable103(cuMod, tiMod, charCulture)
     legitBirth = birthTable104(cuMod)
@@ -55,11 +56,10 @@ def main():
     print('Adulthood: ' + adulthoodEvents )
 
 def capitalize_shit(array): #I don't feel like re-writing everything from lower-case in the rolltables, so fuck it. Here.
-    i = 0
-    for each in array:
+    for i in range(len(array)):
         array[i] = array[i].capitalize()
-        i += 1
     return array
+
 def random_choice_index(chances):
 	dice = randint(1, sum(chances))
 	running_sum = 0
@@ -74,7 +74,6 @@ def random_choice(chances_dict):
 	chances = chances_dict.values()
 	strings = list(chances_dict.keys())
 	return strings[random_choice_index(chances)]
-
 
 if __name__ == "__main__":
     main()

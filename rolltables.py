@@ -1059,7 +1059,7 @@ def barbarianOccupationsTable422a():
     elif rand == 18:
         return random_choice(craftsTable424b)
     elif rand == 19:
-        return 'merchant' #425
+        return merchantsTable425(0)
     elif rand == 20:
         return barbarianOccupationsTable422b()
 
@@ -1249,7 +1249,7 @@ def civilizedOccupationsTable423d():
     elif rand == 4:
         return 'chlurgeon'
     elif rand <= 7:
-        return 'merchant' #425
+        return merchantsTable425(0)
     elif rand == 8:
         return 'craftsmen' #424c
     elif rand == 9:
@@ -1393,6 +1393,245 @@ craftsTable424c = {
     'sword smith': 1,
     'illuminator': 1
 }
+
+def merchantsTable425(solMod):
+    rand = randiny(1,16)
+    if rand == 0:
+        return 'pawnshop'
+    elif rand == 1:
+        return 'caravan master'
+    elif rand == 2:
+        return 'tavernkeeper'
+    elif rand == 3:
+        return 'trader'
+    elif rand == 4:
+        return 'innkeeper'
+    elif rand == 5:
+        return 'dry goods seller'
+    elif rand == 6:
+        return 'curio merchant'
+    elif rand == 7:
+        return 'snake oil salesman'
+    elif rand == 8:
+        return 'book seller'
+    elif rand == 9:
+        return 'clothing seller'
+    elif rand == 10:
+        return 'weapon shop'
+    elif rand == 11:
+        return 'fishmonger'
+    elif rand == 12:
+        return 'green grocer'
+    elif rand == 13:
+        return 'wine merchant'
+    elif rand == 14:
+        return 'importer'
+    elif rand == 15:
+        return 'furniture dealer'
+    elif rand == 16:
+        return 'slaver'
+    elif rand == 17:
+        return 'carpets & tapestries'
+    elif rand == 18:
+        return 'livestock trader'
+    elif rand == 19:
+        return 'shipping agent'
+    elif rand == 20:
+        return 'silk merchant'
+    elif rand == 21:
+        return 'art dealer'
+    elif rand == 22:
+        return 'gem merchant'
+    elif rand == 23:
+        return 'real estate broker'
+    elif rand == 24:
+        return 'lumber merchant'
+    elif rand == 28:
+        return 'master merchant: ' + merchantsTable425(6) + ', ' + merchantsTable425(6) + ', ' + merchantsTable425(6)
+
+def hobbiesTable427():
+    rand = randint(1,20)
+    if rand == 1:
+        hobby = 'collecting something'
+    elif rand == 2:
+        hobby = 'dancing'
+    elif rand == 3:
+        hobby = 'playing a musical instrument'
+    elif rand == 4:
+        hobby = 'reading for enjoyment'
+    elif rand == 5:
+        hobby = 'writing creatively'
+    elif rand == 6:
+        hobby = 'acting'
+    elif rand == 7:
+        hobby = 'drawing or painting'
+    elif rand == 8:
+        hobby = 'needlework'
+    elif rand == 9:
+        hobby = 'singing'
+    elif rand == 10:
+        rand = randint(1,8)
+        if rand == 1:
+            hobby = 'studying history'
+        elif rand == 2:
+            hobby = 'studying religion'
+        elif rand == 3:
+            hobby = 'studying art'
+        elif rand == 4:
+            hobby = 'studying astronomy'
+        elif rand == 5:
+            hobby = 'studying astrology'
+        elif rand == 6:
+            hobby = 'studying other cultures'
+        elif rand == 7:
+            hobby = 'studying magic'
+        elif rand == 8:
+            hobby = 'studying weapons'
+    elif rand == 11:
+        rand = randint(1,8)
+        if rand == 1:
+            hobby = 'wrestling'
+        elif rand == 2:
+            hobby = 'running'
+        elif rand == 3:
+            hobby = 'fencing'
+        elif rand == 4:
+            hobby = 'team ball sport'
+        elif rand == 5:
+            hobby = 'horse racing'
+        elif rand == 6:
+            hobby = 'swimming'
+        elif rand == 7:
+            hobby = 'archery'
+        elif rand == 8:
+            hobby = 'boxing'
+    elif rand == 12:
+        hobby = 'building detailed models'
+    elif rand == 13:
+        hobby = 'developing appreciation of the arts'
+    elif rand == 14:
+        hobby = 'hairdressing and cosmetics'
+    elif rand == 15:
+        hobby = 'hunting for sport'
+    elif rand == 16:
+        hobby = 'gardening'
+    elif rand == 17:
+        hobby = 'breeding dogs'
+    elif rand == 18:
+        hobby = 'animal husbandry'
+    elif rand == 19:
+        hobby = 'fishing for sport'
+    elif rand == 20:
+        hobby = 'heraldry'
+    return hobby + ' (interest: ' + hobbiesTable427c() + ')'
+
+def hobbiesTable427c():
+    rand = randint(1,10)
+    if rand <= 2:
+        return 'casual'
+    elif rand <= 7:
+        return 'sporadic and variable'
+    elif rand <= 9:
+        return 'devoted'
+    elif rand == 10:
+        return 'consuming passion'
+
+def tragediesTable528():
+    global solMod
+    rand = randint(1,20) + solMod
+    if rand == -2:
+        return 'wild beasts attack. Character is injured ' #870 + #753
+    elif rand == -1:
+        return tragediesTable528() #should re-roll without solMod, but fuck it for now
+    elif rand == 0:
+        return 'imprisoned for a crime the character did not commit, ' #875, #540
+    elif rand == 1:
+        return tragediesTable528() #this should be different as well
+    elif rand == 2:
+        return 'parents/guardians unable to pay their taxes, ' #546
+    elif rand == 3:
+        return 'a favorite pet dies' #requires 750
+    elif rand == 4:
+        return 'orphaned! ' #546
+    elif rand == 5:
+        tragedy = 'place character lives is wiped out by '
+        rand = randint(1,6)
+        if rand == 1:
+            return tragedy + ' a deadly disease'
+        elif rand <= 3:
+            return tragedy + ' a terrible fire'
+        elif rand <= 5:
+            return tragedy + ' war'
+        elif rand == 6:
+            return tragedy #750 go hurr
+    elif rand == 6:
+        return 'character is responsible for a death, ' #750 and 545
+    elif rand == 7:
+        return 'orphaned! ' #546
+    elif rand == 8: #skipping the original 8
+        tragedy = 'a favorite possession is '
+        rand = randint(1,6)
+        if rand <= 3:
+            return tragedy + ' lost'
+        elif rand <= 5:
+            return tragedy + ' stolen'
+        elif rand == 6:
+            return tragedy + ' stolen, with a fake left in its place'
+    elif rand == 9:
+        rand = randint(1,6)
+        if rand <= 3:
+            tragedy1 = 'father is outlawed due to '
+        elif rand == 4:
+            tragedy1 = 'mother is outlawed due to '
+        elif rand <= 6:
+            tragedy1 = 'parents are both outlawed due to '
+        return tragedy1 #875
+    elif rand == 10:
+        return 'character sold into slavery, ' + enslavedTable539()
+    elif rand == 11:
+        rand = randint(1,8)
+        if rand <= 4:
+            tragedy1 = 'an accident'
+        if rand == 5:
+            tragedy1 = 'a terrible fire'
+        if rand == 6:
+            tragedy1 = 'an animal attack'
+        if rand <= 8:
+            tragedy1 = 'an attack by ' #750
+        return 'character receives a severe injury due to ' + tragedy1
+    elif rand == 12:
+        rand = randint(1,2)
+        if rand == 1:
+            tragedy = 'father was killed by '
+        elif rand == 2:
+            tragedy = 'mother was killed by '
+        rand = randint(1,3)
+        if rand <= 2:
+            return tragedy + 'an accident'
+        elif rand == 3:
+            return tragedy #750 and 545
+    elif rand == 13:
+        return 'character is banned from performing their professiona nd is cast out of guilds, their identity is known and they cannot continue to practice in the nearby vicinity'
+    elif rand == 14:
+        return
+    elif rand == 15:
+        return
+    elif rand == 16:
+        return
+    elif rand == 17:
+        return
+    elif rand == 18:
+        return
+    elif rand == 19:
+        return
+    elif rand == 20:
+        return
+    elif rand == 21:
+        return
+    elif rand == 22:
+        return
+    elif rand == 23:
+        return
 
 def enslavedTable539():
     rand = randint(1,20)
