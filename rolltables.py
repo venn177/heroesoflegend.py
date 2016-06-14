@@ -463,16 +463,16 @@ def unusualBirthCircumstancesTable113():
     else:
         return 'mother was reputed to be a virgin'
 
-def parentTable114a(charCulture):
+def parentTable114a(charCulture, solMod):
     rand = randint(1,20)
     if rand <= 12:
-        return 'Head of household has one occupation, ' #420-423 go hurr
+        return 'Head of household is a ' + occupationsTable420(charCulture, solMod)
     elif rand <= 14:
-        return 'Head of household has two jobs: ' #420-423 go hurr, again
+        return 'Head of household has two jobs: ' + occupationsTable420(charCulture, solMod)
     elif rand <= 16:
-        return 'Head of household does not work, the other parent does. They work as ' #420-423 again
+        return 'Head of household does not work, the other parent does. They work as a ' + occupationsTable420(charCulture, solMod)
     elif rand <= 18:
-        return 'Both parents work. Head of household is a ' #420-423 go hurr 'and other parent is a '
+        return 'Both parents work. Head of household is a ' + occupationsTable420(charCulture, solMod) + 'and other parent is a ' + occupationsTable420(charCulture, solMod)
     elif rand <= 19:
         return 'Head of household was an adventurer, ' #table 757
     elif rand <= 20:
@@ -816,19 +816,19 @@ def childhoodEventsTable216b():
         return 'something wonderful occurs, ' #529
 #    elif rand == 20:
 
-def adulthoodSignificantEventsTable217(solMod):
+def adulthoodSignificantEventsTable217(charSocial, solMod):
     rand = randint(1,3)
     adulthoodEvents = []
     for _ in range(rand):
-        adulthoodEvents.append(adulthoodSignificantEventsTable217a(solMod))
+        adulthoodEvents.append(adulthoodSignificantEventsTable217a(charSocial, solMod))
     return adulthoodEvents
 
-def adulthoodSignificantEventsTable217a(solMod):
+def adulthoodSignificantEventsTable217a(charSocial, solMod):
     rand = randint(2,39) + solMod
     if rand == -1:
         return 'while foraging or hunting for food, the character saves a trapped predatory beast. Later, the same beast saves the character.'
     elif rand == 0:
-        return 'to earn a living, the character learns a new occupation.' #420-423
+        return 'to earn a living, the character learns a new occupation: ' + occupationsTable420(charsocial, solMod)
     elif rand <= 2:
         return 'something wonderful occurs, ' #529
     elif rand <= 4:
@@ -937,9 +937,9 @@ def adulthoodSignificantEventsTable217a(solMod):
             return eventPresuppose + ', is sold into slavery: ' + enslavedTable539() + ')'
         return eventPresuppose
     elif rand <= 36: #skipping 37-38, as well as 39
-        return 'character learns an occupation, ' #420-423
+        return 'character learns an occupation, ' + occupationsTable420(charSocial, solMod)
     elif rand <= 39:
-        return adulthoodSignificantEventsTable217a(solMod+5)
+        return adulthoodSignificantEventsTable217a(charSocial, solMod+5)
     elif rand == 40:
         return 'character is made close advisor to a local ruler'
     elif rand <= 43:
@@ -981,6 +981,16 @@ def apprenticeshipsTable419b():
         return "An exotic event occurs, affecting the character's master: " #544
     elif rand == 9:
         return "Character accompanies their master on a long journey: " + adulthoodSignificantEventsTable217a(randint(1,5))
+
+def occupationsTable420(charCulture, solMod):
+    if charCulture == "Primitive":
+        return primitiveOccupationsTable420a()
+    elif charCulture == "Nomad":
+        return nomadOccupationsTable421a()
+    elif charCulture == "Barbarian":
+        return barbarianOccupationsTable422a()
+    else:
+        return civilizedOccupationsTable423a(solMod)
 
 def primitiveOccupationsTable420a():
     rand = randint(1,20)
@@ -1395,7 +1405,7 @@ craftsTable424c = {
 }
 
 def merchantsTable425(solMod):
-    rand = randiny(1,16)
+    rand = randint(1,16)
     if rand == 0:
         return 'pawnshop'
     elif rand == 1:
@@ -1538,7 +1548,7 @@ def hobbiesTable427c():
 
 def tragediesTable528():
     global solMod
-    rand = randint(1,20) + solMod
+    rand = randint(1,19) + solMod
     if rand == -2:
         return 'wild beasts attack. Character is injured ' #870 + #753
     elif rand == -1:
@@ -1611,27 +1621,174 @@ def tragediesTable528():
         elif rand == 3:
             return tragedy #750 and 545
     elif rand == 13:
-        return 'character is banned from performing their professiona nd is cast out of guilds, their identity is known and they cannot continue to practice in the nearby vicinity'
+        return 'character is banned from performing their profession and is cast out of guilds, their identity is known and they cannot continue to practice in the nearby vicinity'
     elif rand == 14:
-        return
+        return 'if character has a lover, roll on this table' #I'll be elaborating on this once the basics of everything are written out
     elif rand == 15:
-        return
+        return  'a disease almost kills the character and leaves horrible scars'
     elif rand == 16:
-        return
+        return "war ravages the character's homeland, forcing them to join the military" #535
     elif rand == 17:
-        return
+        return "a fire destroys the character's home, along with all of their personal belongings"
     elif rand == 18:
-        return
+        return "character is cursed " #868
     elif rand == 19:
-        return
+        return "character's best friend dies"   #545
     elif rand == 20:
-        return
+        preSuppose = "family estate destroyed by "
+        rand = randint(1,6)
+        if rand == 1:
+            return preSuppose + ''
+        elif rand <= 3:
+            return preSuppose + 'a terrible fire'
+        elif rand == 4:
+            return preSuppose + 'an unexplainable accident'
+        elif rand == 5:
+            return preSuppose + 'war'
+        elif rand == 6:
+            return preSuppose + "someone's actions" #750
     elif rand == 21:
-        return
+        return 'imprisoned for a crime the character did not commit, ' #875, #540
     elif rand == 22:
-        return
+        return tragediesTable528() #reroll is supposed to be without solMod, will fuck around with later
     elif rand == 23:
-        return
+        return "character's family loses all wealth"
+    elif rand == 24:
+        return 'character is disinherited by parents'
+    elif rand <= 26:
+        return 'character is forced into an unwanted political marriage.'
+    elif rand <= 28:
+        return "a shift in economy causes severe inflation, causing wealth of character's family to drop to a tenth of what it was"
+    elif rand <= 30:
+        return tragediesTable528() #reroll is supposed to be without solMod, will fuck around with later
+    elif rand == 31:
+        return "source of character or character's family's income is destroyed or lost"
+    elif rand == 32:
+        rand = randint(1,6)
+        return "character's family is stripped of all titles and lands by the ruler of the land" + (("", ", the family is outlawed")[rand == 6])
+
+def wonderfulTable529(solMod):
+    rand = randint(1,20) + solMod
+
+#skipping race-specific events for now, which is 530-533
+
+def underworldTable534():
+    beginning = random_choice(underworldTable534a)
+    crimeType = underworldTable534b()
+    crimeEvent = underworldTable534c()
+
+underworldTable534a = {
+    'character needs money to pay debts': 1,
+    'peer pressure forces the character to do criminal acts': 1,
+    'character has a pathological urge to do wrong': 1,
+    'character wants to defy authority': 1,
+    "character wants to live a lifestyle they can't afford": 1,
+    'character seeks a lifestyle filled with thrills and excitement': 1,
+    'character seeks to wield power in the crime world': 1,
+    'character is forced into a life of crime by cirminals who threaten their loved ones': 1
+}
+
+def underworldTable534b():
+    rand = randint(1,6)
+    if rand == 1:
+        return 'petty theft'
+    elif rand == 2:
+        return 'organized guild thievery'
+    elif rand == 3:
+        return 'organized crime: ' #875
+    elif rand == 4:
+        rand = randint(1,9)
+        preSuppose = 'independent criminal involved in '
+        if rand == 1:
+            second = 'prostitution'
+        elif rand == 2:
+            second = 'being a hired thug'
+        elif rand == 3:
+            second = 'burglary'
+        elif rand == 4:
+            second = 'smuggling'
+        elif rand == 5:
+            second = 'violating curfew'
+        elif rand == 6:
+            second = 'stealing livestock'
+        elif rand == 7:
+            second = 'selling drugs'
+        elif rand == 8:
+            second = 'robbing money lenders and stores'
+        elif rand == 9:
+            second = 'kidnapping'
+        return preSuppose + second
+    elif rand == 5:
+        return 'piracy' #534d
+    elif rand == 6:
+        return 'banditry'
+
+def underworldTable534c():
+    rand = randint(1,20)
+    if rand == 1:
+        return 'join a gang'
+    elif rand == 2:
+        return 'jailed in a sweep of the streets by law enforcement'
+    elif rand == 3:
+        return 'seriously wounded in a fight' #870
+    elif rand == 4:
+        return 'character is a common criminal suspect regarding any crimes that happen in their town'
+    elif rand == 5:
+        rand = randint(1,6)
+        return 'character becomes an informant for the law' + (("", ", labeled as a snitch, with a contract on their life")[rand == 6])
+    elif rand == 6:
+        return 'character participates in a jewel heist, only for their ' + str(randint(1,4)) + 'partners to disappear with the loot'
+    elif rand == 7:
+        return 'a key gang boss is slain and the character is blamed, members of the gang seek the death of the character'
+    elif rand == 8:
+        return 'character is imprisoned for a crime' #875
+    elif rand == 9:
+        return 'character becomes a proficient thief'
+    elif rand == 10:
+        return 'character goes straight, ending their life of crime. Still often recognized by criminals who remember the old days, though'
+    elif rand == 11:
+        return 'character develops extensive contacts in the underworld'
+    elif rand == 12:
+        return 'character learns the surrounding sewers like the back of their hand'
+    elif rand == 13:
+        return "character learns secret passages to a noble's estate"
+    elif rand == 14:
+        return 'character discovers that several items taken in a recent heist are cursed.' #863 and #868
+    elif rand == 15:
+        return "a crime lord becomes the character's patron, grooming them to a leader of organized crime"
+    elif rand == 16:
+        return "character's friends are killed off in horrible ways and law enforcement has no interest in stopping the killer. only the character and one friend survive."
+    elif rand == 17:
+        return "character discovers that a prominent government official is the head of a major crime ring"
+    elif rand == 18:
+        return "character's thieving skills improve considerably"
+    elif rand == 19:
+        return "character steals and hides a valuable gem, only to later find out it was stoled by one of the character's criminal 'friends'"
+    elif rand == 20:
+        return 'character becomes the leader of a gang'
+
+def underworldTable534d():
+    rand = randint(1,10)
+    if rand == 1:
+        return 'pirate captain buries treasure on a deserted island'
+    elif rand == 2:
+        return 'pirate crew is captured and all but the character are hanged'
+    elif rand == 3:
+        return 'character becomes adept at sailing a big ship'
+    elif rand == 4:
+        return 'pirate crew mutinies and the character is voted captain by the mutineers. The old captain vows revenge.'
+    elif rand == 5:
+        return 'pirates discover a lost island with a mysterious temple. All members of the crew are cursed by the magic of the temple, ' #868
+    elif rand == 6:
+        return 'an old salt teaches the character how to become an expert in wielding a cutlass'
+    elif rand == 7:
+        return 'a raid on a large treasure ship gives the character a lot of gold'
+    elif rand == 8:
+        return 'pirate captain is a woman known for taking vengeance on male captives.'
+    elif rand == 9:
+        return 'due to wide travel on the pirate ship, character becomes moderately skilled at ' + str(randint(1,6)+1) + ' languages.'
+    elif rand == 10:
+        return "character becomes oen of the captain's officers"
 
 def enslavedTable539():
     rand = randint(1,20)
@@ -2341,84 +2498,3 @@ Table = {
     '':
 }
 '''
-
-def phobiasTable649C():
-    rand=randint(2,40)
-    if rand == 2:
-       return "monophobia"
-    elif rand == 3:
-        return "zoophobia"
-    elif rand == 4:
-        return "taphophovia"
-    elif rand == 5:
-        return "hematophobia"
-    elif rand == 6:
-        return "ailutoophobia"
-    elif rand == 7:
-        return "psychrophobia"
-    elif rand == 8:
-        return "chromophobia"
-    elif rand == 9:
-        return "necrophobia"
-    elif rand == 10:
-        return "achluophobia"
-    elif rand == 11:
-        return "kenophobia"
-    elif rand == 12:
-        return "claustrophobia"
-    elif rand == 13:
-        return "gynephobia"
-    elif rand == 14:
-        return "pyrophobia"
-    elif rand == 15:
-        return "aerophobia"
-    elif rand == 16:
-        return "theophobia"
-    elif rand == 17:
-        return "phasmophobia"
-    elif rand == 18:
-        return "barophobia"
-    elif rand == 19:
-        return "trichophobia"
-    elif rand == 20:
-        return "acrophobia"
-    elif rand == 21:
-        return "entomophobia"
-    elif rand == 22:
-        return "magiophobia"
-    elif rand == 23:
-        return "androphobia"
-    elif rand == 24:
-        return "ballistophobia"
-    elif rand == 25:
-        return "teratophobia"
-    elif rand == 26:
-        return "nyctophobia"
-    elif rand == 27:
-        return "agoraphobia"
-    elif rand == 28:
-        return "erotophobia"
-    elif rand == 29:
-        return "toxiphobia"
-    elif rand == 30:
-        return "ombrophobia"
-    elif rand == 31:
-        return "peccatophobia"
-    elif rand == 32:
-        return "blennophobia"
-    elif rand == 33:
-        return "orphidophobia"
-    elif rand == 34:
-        return "arachnophobia"
-    elif rand == 35:
-        return "astaphobia"
-    elif rand == 36:
-        return "dendrophobia"
-    elif rand == 37:
-        return "hydrophobia"
-    elif rand == 38:
-        return "anemophobia"
-    elif rand == 39:
-        return "traumatophobia"
-    elif rand == 40:
-        return "more than one fear, reroll one die three times and add one"

@@ -42,7 +42,7 @@ def main():
     if legitBirth == False: #this needs to be after birth occurances because it fits better, thematically
         print(illegitBirth)
     #shit about parents go hurr
-    hohOccupation = parentTable114a(charCulture)
+    hohOccupation = parentTable114a(charCulture, solMod)
     print('Parents Info: ' + hohOccupation)
     childhoodEvents, adolescentEvents = childhoodEventsTable215a(solMod)
     childhoodEvents = capitalize_shit(childhoodEvents)
@@ -50,7 +50,7 @@ def main():
     childhoodEvents = " | ".join(childhoodEvents)
     adolescentEvents = " | ".join(adolescentEvents)
     print('Childhood: ' + childhoodEvents + "\nAdolescence: " + adolescentEvents)
-    adulthoodEvents = adulthoodSignificantEventsTable217(solMod)
+    adulthoodEvents = adulthoodSignificantEventsTable217(charSocial, solMod)
     adulthoodEvents = capitalize_shit(adulthoodEvents)
     adulthoodEvents = " | ".join(adulthoodEvents)
     print('Adulthood: ' + adulthoodEvents )
