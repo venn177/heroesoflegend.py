@@ -499,7 +499,7 @@ def parentTable114bA():
     elif rand == 3:
         return 'devotes time to a hobby, ' #427
     elif rand == 4:
-        return 'possesses an unusual item, ' + giftsTable863
+        return 'possesses an unusual item, ' + random_choice(giftsTable863)
     elif rand == 5:
         return 'is inventive, creative, and artistic'
     elif rand == 6:
@@ -525,7 +525,7 @@ def parentTable114bA():
     elif rand == 10:
         return 'has a patron, ' #543
     elif rand == 11:
-        return 'is a military veteran, ' #535a
+        return 'is a military veteran, ' + militaryTable535a()
     elif rand == 12:
         return 'is very religious, worships ' + deitiesTable864()
     elif rand == 13:
@@ -779,7 +779,7 @@ def childhoodEventsTable216b():
     elif rand == 9:
         return "character learns head of household's occupation"
     elif rand == 10:
-        eventPresuppose = 'character joins the military '
+        eventPresuppose = 'character joins the military ' + militaryTable535()
         rand = randint(1,4)
         if rand == 1:
             eventPresuppose = eventPresuppose + 'because they were drafted, '
@@ -789,7 +789,7 @@ def childhoodEventsTable216b():
             eventPresuppose = eventPresuppose + 'because they forced to, '
         elif rand == 4:
             eventPresuppose = eventPresuppose + 'on mistake, '
-        eventPresuppose = eventPresuppose + 'Info: ' #535
+        eventPresuppose = eventPresuppose + 'Info: '
     elif rand == 11:
         rand = randint(1,5)
         if rand == 5:
@@ -910,7 +910,7 @@ def adulthoodSignificantEventsTable217a(charSocial, solMod):
             eventPresuppose = eventPresuppose + 'forced to, '
         elif rand == 4:
             eventPresuppose = eventPresuppose + 'on mistake, '
-        return eventPresuppose + 'Info: ' #535
+        return eventPresuppose + 'Info: ' + militaryTable535()
     elif rand <= 30:
         return 'character has a romantic encounter, ' #542
     elif rand == 31:
@@ -982,7 +982,7 @@ def apprenticeshipsTable419b():
     elif rand == 9:
         return "Character accompanies their master on a long journey: " + adulthoodSignificantEventsTable217a(randint(1,5))
 
-def occupationsTable420(charCulture, solMod):
+def occupationsTable420(charCulture, solMod=0):
     if charCulture == "Primitive":
         return primitiveOccupationsTable420a()
     elif charCulture == "Nomad":
@@ -1184,7 +1184,7 @@ def civilizedOccupationsTable423b():
     elif rand <= 17:
         return 'street vendor'
     elif rand <= 18:
-        return 'soldier' #535
+        return 'soldier' + militaryTable535()
     elif rand == 19:
         return random_choice(craftsTable424a)
     elif rand == 20:
@@ -1627,7 +1627,7 @@ def tragediesTable528():
     elif rand == 15:
         return  'a disease almost kills the character and leaves horrible scars'
     elif rand == 16:
-        return "war ravages the character's homeland, forcing them to join the military" #535
+        return "war ravages the character's homeland, forcing them to join the military: " + militaryTable535()
     elif rand == 17:
         return "a fire destroys the character's home, along with all of their personal belongings"
     elif rand == 18:
@@ -1669,6 +1669,56 @@ def tragediesTable528():
 
 def wonderfulTable529(solMod):
     rand = randint(1,20) + solMod
+    if rand <= -2:
+        return "Wild beasts attack the character's camp. The character discovers they have the innate ability to command wild beasts."
+    elif rand <= -1:
+        return "The ruler pardons all prisoners of the land."
+    elif rand <= 1:
+        rand = randint(1,2)
+        return "If the character has a lover or spouse, they are blessed with a beautiful, healthy " (("boy", "girl"), rand == 1) + "."
+    elif rand <= 2:
+        return "While repairing the family home, the character discovers a " + giftsTable863()
+    elif rand <= 3:
+        return "Character acquires a " #759
+    elif rand <= 4:
+        return "Character is adopted into a wealthy family, treated well."
+    elif rand <= 5:
+        return "The village the character lives in is destroyed, but is rebuilt and becomes more prosperous than ever."
+    elif rand <= 6:
+        return "The character is responsible for saving the life of " #750
+    elif rand <= 9:
+        return wonderfulTable529(0)
+    elif rand <= 10:
+        return "An evil lcoal ruler outlaws the character's parents. " + str(randint(1,10)) + " years later, the ruler's liege overthrows them. The character's parents are pardoned and honored with elevation to nobility due to their role in the ruler's demise."
+    elif rand <= 11:
+        return ""
+    elif rand <= 12:
+        return
+    elif rand <= 14:
+        return
+    elif rand <= 16:
+        return
+    elif rand <= 18:
+        return
+    elif rand <= 19:
+        return
+    elif rand <= 20:
+        return
+    elif rand <= 21:
+        return
+    elif rand <= 23:
+        return
+    elif rand <= 25:
+        return
+    elif rand <= 27:
+        return
+    elif rand <= 29:
+        return
+    elif rand <= 32:
+        return
+    elif rand <= 33:
+        return
+
 
 #skipping race-specific events for now, which is 530-533
 
@@ -1790,10 +1840,231 @@ def underworldTable534d():
     elif rand == 10:
         return "character becomes oen of the captain's officers"
 
+def militaryTable535(charCulture, solMod):
+    service = militaryTable535a(charCulture)
+    event = militaryTable535b(0, charCulture)
+    rank = militaryRankTable538(solMod)
+
+def militaryTable535a(charCulture):
+    rand = randint(1,20)
+    if charCulture == 'Primitive':
+        if rand <= 12:
+            return 'light infantry'
+        elif rand <= 14:
+            return 'medium infantry'
+        elif rand <= 16:
+            return 'archer'
+        elif rand <= 18:
+            return 'light cavalry'
+        elif rand <= 20:
+            return 'mercenary (' + militaryTable535a(charCulture) + ')'
+    elif charCulture == 'Civilized':
+        if rand <= 1:
+            return 'light infantry'
+        elif rand <= 6:
+            return 'medium infantry'
+        elif rand <= 8:
+            return 'heavy infantry'
+        elif rand <= 10:
+            return 'archer'
+        elif rand <= 11:
+            return 'chariots'
+        elif rand <= 13:
+            return 'light cavalry'
+        elif rand <= 14:
+            return 'heavy cavalry'
+        elif rand <= 16:
+            return 'mercenary (' + militaryTable535a(charCulture) + ')'
+        elif rand <= 18:
+            return 'navy'
+        elif rand <= 19:
+            return 'special forces' #537 baybay
+        elif rand <= 20:
+            return 'noncombat duty' #536
+    else: #nomad and barbarian use the same thing, soooooo
+        if rand <= 3:
+            return 'light infantry'
+        elif rand <= 7:
+            return 'medium infantry'
+        elif rand <= 8:
+            return 'archer'
+        elif rand <= 10:
+            return 'chariots'
+        elif rand <= 15:
+            return 'light cavalry'
+        elif rand <= 17:
+            return 'mercenary (' + militaryTable535a(charCulture) + ')'
+        elif rand <= 19:
+            return 'navy'
+        elif rand <= 20:
+            return 'noncombat duty' #536
+
+def militaryTable535b(modifier = 0, charCulture):
+    rand = randint(1,20) + modifier
+    if rand <= 6: #battle rolls are fucking big
+        preSuppose = 'Battle! '
+        return preSuppose + militaryTable535bA()
+    elif rand <= 8:
+        return 'Character enlists for another tour of duty.'
+    elif rand <= 9:
+        return "Character's prowess and intelligence earn them reassignemnt to a special forces unit: " #537
+    elif rand <= 10:
+        return 'Character is transferred to a noncombat unit: ' #536
+    elif rand <= 11:
+        return 'Character is made an officer.'
+    elif rand <= 12:
+        rand = randint(1,5)
+        if rand == 5:
+            return "Character's unit is involved in " + str(randint(1,10)) + " skirmishes. One particular battle: " + militaryTable535bA()
+        return "Character's unit is involved in " + str(randint(1,10)) + " skirmishes."
+    elif rand <= 13:
+        return "Character's unit is ambushed! " + militaryTable535bA(randint(1,4))
+    elif rand <= 14:
+        return "Character's unit is involved in a plot to overthrow the government. "
+    elif rand <= 15:
+        return "Character is reassigned to special forces: " #537
+    elif rand <= 16:
+        rand = randint(1,6)
+        return "A disease ravages the army." + (("", " The character becomes sensitive to cold and damp."), rand == 6)
+    elif rand <= 17:
+        return "Character re-enlists for another hitch. " + militaryTable535b(0, charCulture)
+    elif rand <= 18:
+        return "Character learns to be proficient with a new weapon."
+    elif rand <= 19:
+        return "Character's hitch is extended by " + str(rand(1,4)) + " years due to a major war breaking out. " + militaryTable535b(5, charculture)
+    elif rand <= 21:
+        return "A fierce war breaks out due to " + random_choice(militaryTable535bB) + ". Result of most important battle: " + militaryTable535bA
+    elif rand <= 23:
+        return "Character increases their aptitude of their occupation."
+    elif rand == 24:
+        return "Character is assigned to accompany a military unit in the field. " + militaryTable535b(0, charCulture)
+    elif rand == 25:
+        return "In the service of " #543
+
+def militaryTable535bA(modifier = 0):
+    rand = randint(1,20) + modifier
+    if rand <= 1:
+        battleOccur = str(randint(1,100)) + "\% of the character's side was killed. They fought poorly and received an injury, " #870 also their military career could end
+    elif rand <= 2:
+        battleOccur = 'Serious casualties and the character was injured, being granted an impressive scar.'
+    elif rand <= 3:
+        battleOccur = 'The horror of battle causes the character to develop an exotic personality feature, ' #649
+#   elif rand <= 5: skipping for now due to re-rolling
+#       battleOccur = ''
+    elif rand <= 7:
+        battleOccur = 'Character sees action, but nothing noteworthy occurs.'
+    elif rand <= 8:
+        battleOccur = 'Character fought well, with many a foe dying by their hands.'
+    elif rand <= 9:
+        battleOccur = 'Character fought well and became known for their heroism. For this, they were promoted.'
+    elif rand <= 10:
+        battleOccur = 'Character is captured and enslaved: ' + enslavedTable539()
+    elif rand <= 11:
+        battleOccur = 'Character is decorated for heroism.'
+    elif rand <= 12:
+        battleOccur = 'Character was a coward in battle and, even though no one noticed, must live with their actions.'
+    elif rand <= 13:
+        battleOccur = "Character's best friend dies at their side."
+    elif rand <= 14:
+        battleOccur = 'Character is the only survivor of their unit.'
+    elif rand <= 15:
+        battleOccur = 'Character deserts during battle, revealing their cowardly side.'
+    elif rand <= 16:
+        battleOccur = 'Character is responsible for the deaths of ' + str(randint(1,10)) + ' of their comrades.'
+    elif rand <= 17:
+        battleOccur = 'Character slays the leader of the enemy.'
+    elif rand <= 18:
+        battleOccur = "Character's superior is slain and they assume command."
+    elif rand <= 19:
+        battleOccur = 'Regardless of battle performance, character is accused of dereliction of duty and is court-martialed.'
+    elif rand <= 20:
+        rand = randint(1,6)
+        battleOccur = 'An act of the character reverses the outcome of the battle.' + (("", " They are recognized for it."), rand == 6)
+    elif rand <= 21:
+        battleOccur = "Victor's side suffers light casualties. " + militaryTable535b(0, charCulture)
+    elif rand <= 22:
+        battleOccur = "Loser's side is utterly destroyed. " + militaryTable535b(0, charCulture)
+    return battleOccur
+
+militaryTable535bB = {
+    'armies from a neighboring land': 3,
+    'armies of monsters': 1,
+    'a civil war': 2,
+    'a peasant rebellion': 1,
+    'a war of succession': 1,
+    'a holy war': 1,
+    'monsters from another plane': 1
+}
+
+def noncombatTable536(charCulture):
+    rand = randint(1,20)
+    if rand <= 3:
+        return "A regular occupation, " + occupationsTable420(charCulture)
+    elif rand <= 5:
+        return "Medical corps"
+    elif rand == 6:
+        return "Recruiter"
+    elif rand == 7:
+        return 'quartermaster corps'
+    elif rand == 8:
+        return 'Instructor'
+    elif rand == 9:
+        return 'Engineer'
+    elif rand == 10:
+        return 'Messenger'
+    elif rand == 11:
+        return 'Cook'
+    elif rand == 12:
+        return 'Embassy guard'
+    elif rand == 13:
+        return 'Mage guard'
+    elif rand == 14:
+        return 'Prison guard'
+    elif rand == 15:
+        return 'Payroll guard'
+    elif rand == 16:
+        return 'City guard'
+    elif rand == 17:
+        return 'Private body guard to leader'
+    elif rand == 18:
+        return 'Palace guard'
+    elif rand == 19:
+        return 'Temple guard'
+    elif rand == 20:
+        return 'border guard'
+
+specialForcesTable537 = {
+    'ranger': 2,
+    'scout': 2,
+    'monster squad': 1,
+    'marine': 2,
+    'suicide squad': 1,
+    'war machine': 1,
+    'espionage': 1
+}
+
+def militaryRankTable538(solMod):
+    rand = randint(1,6) + solMod
+    if rand <= 10:
+        return "Soldier"
+    elif rand <= 12:
+        return 'Corporal'
+    elif rand <= 15:
+        return 'Sargeant'
+    elif rand <= 16:
+        return 'Second Lieutenant'
+    elif rand <= 18:
+        return 'First Lieutenant'
+    elif rand <= 20:
+        return 'Captain'
+    elif rand <= 24:
+        return 'Major'
+    elif rand <= 25:
+        return "Colonel"
+
 def enslavedTable539():
     rand = randint(1,20)
-    if rand <= 1:
-        # Escape
+    if rand <= 1: # Escape situation
         rand = randint(1,8)
         if rand == 1:
             return 'character escaped slavery, a reward of ' + str(randint(1,10)*100) + ' gold is offered for their capture'
