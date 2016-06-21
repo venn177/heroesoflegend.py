@@ -2769,3 +2769,45 @@ Table = {
     '':
 }
 '''
+def behaviortags649E():
+    rand=randint(1,20)
+    if rand == 1:
+       return "abesntminded"
+    elif rand == 2:
+        return "addict"
+    elif rand == 3:
+        return "anarchist"
+    elif rand == 4:
+        return "distinctive possession"
+    elif rand == 5:
+        return "ego signature"
+    elif rand == 6:
+        return "hiccuping"
+    elif rand == 7:
+        return "insomniac"
+    elif rand == 8:
+        return "know-it-all"
+    elif rand == 9:
+        return "neatnik"
+    elif rand == 10:
+        return "stuttering"
+    elif rand == 11:
+        return "pet lover"
+    elif rand == 12:
+        return "political activist"
+    elif rand == 13:
+        return "practical joker"
+    elif rand == 14:
+        return "secret identity"
+    elif rand == 15:
+        return "slob"
+    elif rand == 16:
+        return "packrat"
+    elif rand == 17:
+        return "unique physical habit"
+    elif rand == 18:
+        return "vandal"
+    elif rand == 19:
+        return "yesman"
+    elif rand == 20:
+        return "roll 1d3+1 times for multiple behavior tags"
