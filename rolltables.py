@@ -2769,3 +2769,89 @@ Table = {
     '':
 }
 '''
+
+def OfficialJobTags752():
+    rand=randint(1,20)
+    if rand == 1:
+       return "scribe"
+    elif rand == 2:
+        return "clerk"
+    elif rand == 3:
+        return "city guardsman/constable"
+    elif rand == 4:
+        return "guard captain/chief constable"
+    elif rand == 5:
+        return "sheriff"
+    elif rand == 6:
+        return "tax collector"
+    elif rand == 7:
+        return "masgistrate"
+    elif rand == 8:
+        return "diplomat"
+    elif rand == 9:
+        return "advisor to country ruler"
+    elif rand == 10:
+        return "chief advisior to a ruler"
+    elif rand == 11:
+        return "governer"
+    elif rand == 12:
+        return "judge"
+    elif rand == 13:
+        return "secret policeman"
+    elif rand == 14:
+        return "soldier"
+    elif rand == 15:
+        return "army officer-go to table 538 to choose rank"
+    elif rand == 16:
+        return "bureaucrat"
+    elif rand == 17:
+        return "senator"
+    elif rand == 18:
+        return "government employee"
+    elif rand == 19:
+        return "city ruler"
+    elif rand == 20:
+        return "spy"
+
+def Relatives753():
+    rand=randint(1,20)
+    if rand == 1:
+       return "First cousin"
+    elif rand == 2:
+        return "Second Cousin"
+    elif rand == 3:
+        return "Distant Cousin"
+    elif rand == 4:
+        return "Son"
+    elif rand == 5:
+        return "Daughter"
+    elif rand == 6:
+        return "Sister"
+    elif rand == 7:
+        return "Brother"
+    elif rand == 8:
+        return "Spouse"
+    elif rand == 9:
+        return "Aunt"
+    elif rand == 10:
+        return "Uncle"
+    elif rand == 11:
+        return "great aunt"
+    elif rand == 12:
+        return "great uncle"
+    elif rand == 13:
+        return "mother"
+    elif rand == 14:
+        return "father"
+    elif rand == 15:
+        return "grandmother"
+    elif rand == 16:
+        return "grandfather"
+    elif rand == 17:
+        return "great grandmother"
+    elif rand == 18:
+        return "great grandfather"
+    elif rand == 19:
+        return "descendant"
+    elif rand == 20:
+        return "reroll"
